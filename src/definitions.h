@@ -8,44 +8,6 @@
 #include <fstream>
 #include<unistd.h>
 
-/* Defining every type number here */
-#define NORMAL 1
-#define FIGHT 2
-#define FLYING 3
-#define POISON 4
-#define GROUND 5
-#define ROCK 6
-#define BUG 7
-#define GHOST 8
-#define STEEL 9
-#define FIRE 10
-#define WATER 11
-#define GRASS 12 
-#define ELECTRIC 13
-#define PSYCHIC 14
-#define ICE 15
-#define DRAGON 16
-#define DARK 17
-#define FAIRY 18
-
-/* Defines Egg Groups */
-#define EGG_MONSTER		= 0
-#define EGG_HUMAN_LIKE	= 1
-#define EGG_WATER1		= 2
-#define EGG_WATER2		= 3
-#define EGG_WATER3		= 4
-#define EGG_BUG			= 5
-#define EGG_MINERAL		= 6
-#define EGG_FLYING		= 7
-#define EGG_AMORPHOUS	= 8
-#define EGG_FIELD		= 9
-#define EGG_FAIRY		= 10
-#define EGG_DITTO		= 11
-#define EGG_GRASS		= 12
-#define EGG_DRAGON		= 13
-#define EGG_UNDISCOVERED	= 14
-#define EGG_GENDER_UNKNOWN	= 15
-
 /* Defines persistent status conditions */
 #define FAINT			1
 #define BURN			2
