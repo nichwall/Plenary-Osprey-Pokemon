@@ -9,32 +9,18 @@ class Type {
 	private:
 		int type_id;
 		std::string type_identifier;
+		std::string type_name;
 		int generation_id;
 		int damage_class_id;
 	public:
 		// Constructor
-		Type(int typeID, std::string typeName, int genID, int damageClassID) {
-			type_id = typeID;
-			type_identifier = typeName;
-			generation_id = genID;
-			damage_class_id = damageClassID;
-		}
+		Type(int typeID, std::string typeName, int genID, int damageClassID);
 		// Deconstructor
-		~Type() {
-			
-		}
+		~Type();
 		// Accessors
-		int getID() {
-			return type_id;
-		}
-		std::string getIdentifier() {
-			return type_identifier;
-		}
-		int getGenerationID() {
-			return generation_id;
-		}
-		int getDamageClassID() {
-			return damage_class_id;
-		}
+		int getTypeID();
+		std::string getTypeIdentifier();
+		int getGenerationID();
+		int getDamageClassID();
 		// No modifiers at this time
 };

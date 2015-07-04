@@ -18,13 +18,13 @@ class MoveFlag {
 		// Deconstructor
 		~MoveFlag() { }
 		// Accessors
-		int getID() {
+		int getMoveID() {
 			return id;
 		}
-		int getIdentifier() {
+		int getMoveIdentifier() {
 			return identifier;
 		}
-		int getFlavorText() {
+		int getMoveFlavorText() {
 			return flavorText();
 		}
 		// No modifiers at this time

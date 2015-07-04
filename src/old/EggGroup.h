@@ -23,13 +23,13 @@ class EggGroup {
 		~EggGroup() {
 		}
 		// Accessors
-		int getID() {
+		int getEggGroupID() {
 			return id;
 		}
-		std::string getIdentifier() {
+		std::string getEggGroupIdentifier() {
 			return identifier;
 		}
-		std::string getName() {
+		std::string getEggGroupName() {
 			return name;
 		}
 };

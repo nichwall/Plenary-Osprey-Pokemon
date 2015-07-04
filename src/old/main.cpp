@@ -5,7 +5,9 @@
 // Including personal header things
 //#include "Player.h"
 //#include "Bag.h"
-//#include "Item_GenIII.h;
+#include "Item_GenIII.h"
+
+using namespace std;
 
 /* Get zoom level of the game.
  * Supported levels will be
@@ -42,10 +44,10 @@ int itemEngine=1;
 int main() {
 	sf::RenderWindow window(sf::VideoMode((int)800*zoomLevel,(int)600*zoomLevel),"Plenary-Osprey Pokemon: Bag v0.1");
 	int currentPocket = 0;
-	//movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
-	//movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
-	//movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
-	//movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
+	movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
+	movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
+	movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
+	movesInGame.push_back(BaseMove("a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s"));
 	while (1) {
 		/* Clear Screen */
 		window.clear(sf::Color::Black);
@@ -55,8 +57,8 @@ int main() {
 //		window.draw(playerBag.getBagIcon(currentPocket));
 		/* Display changes */
 		window.display();
-		//usleep(100000);
-		//printf("Size of movesArray: %d\n",sizeof(movesInGame));
+		usleep(100000);
+		printf("Size of movesArray: %d\n",sizeof(movesInGame));
 	}
 }
 

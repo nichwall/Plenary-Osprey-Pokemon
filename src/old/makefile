@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-std=c++11-c -Wall
+CFLAGS=-c -Wall
 LDFLAGS=-lGL -lGLU -lglut -lsfml-system -lsfml-window -lsfml-graphics
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
