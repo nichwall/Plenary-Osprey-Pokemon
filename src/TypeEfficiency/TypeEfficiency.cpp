@@ -50,7 +50,7 @@ int loadTypeEffectivenessMap(std::string pathToFile) {
 			typeEffectivenessMap.push_back(tempEffects.at(i));
 		}
 	} else {
-		printf("ERROR(1): File not opened\n");
+		printf("ERROR(1): Could not open file\n");
 		return 1;
 	}
 	printf("done\n");
