@@ -7,6 +7,9 @@
 //#include "Bag.h"
 //#include "Item_GenIII.h;
 
+#include "Move/Move.h"
+#include "Type/Type.h"
+
 /* Get zoom level of the game.
  * Supported levels will be
  * 0.5=Tiny

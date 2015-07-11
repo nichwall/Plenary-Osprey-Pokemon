@@ -8,7 +8,7 @@
 #include <stdio.h>		// printf
 
 // Variables
-std::vector<std::string> damageClass;
+extern std::vector<std::string> damageClass;
 
 // Functions
 int load_Damage_Class();

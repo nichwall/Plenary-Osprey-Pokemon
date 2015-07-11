@@ -1,5 +1,9 @@
 #include "Move_Metadata.h"
 
+std::vector<std::string> moveMetaAilments;
+std::vector<std::string> moveMetaCategories;
+std::vector<std::string> moveMetaStatChanges;
+
 int loadMoveMetaAilments() {
 	return loadMoveMetaAilments("move_meta_ailments.csv");
 }
@@ -7,7 +11,7 @@ int loadMoveMetaAilments(std::string pathToFile) {
 	printf("Loading Move Meta ailments...");
 	
 	// Open file
-	std::ifstream file (pathToFile);
+	std::ifstream file (pathToFile.c_str());
 	if (file.is_open()) {
 		std::string line;
 		// Skip first line
@@ -45,11 +49,11 @@ int loadMoveMetaAilments(std::string pathToFile) {
 int loadMoveMetaCategories() {
 	loadMoveMetaCategories("move_meta_categories.csv");
 }
-int loadMoveMetaCategories(std::string pathToFiles) {
+int loadMoveMetaCategories(std::string pathToFile) {
 	printf("Loading Move Meta categories...");
 	
 	// Open file
-	std::ifstream file (pathToFile);
+	std::ifstream file (pathToFile.c_str());
 	if (file.is_open()) {
 		std::string line;
 		// Skip first line
@@ -87,11 +91,11 @@ int loadMoveMetaCategories(std::string pathToFiles) {
 int loadMoveMetaStatChanges() {
 	loadMoveMetaStatChanges("move_meta_stat_changes.csv");
 }
-int loadMoveMetaStatChanges(std::string pathToFiles) {
+int loadMoveMetaStatChanges(std::string pathToFile) {
 	printf("Loading Move Meta stat changes...");
 	
 	// Open file
-	std::ifstream file (pathToFile);
+	std::ifstream file (pathToFile.c_str());
 	if (file.is_open()) {
 		std::string line;
 		// Skip first line

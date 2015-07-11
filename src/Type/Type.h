@@ -11,8 +11,10 @@
 #include <algorithm>    // std::sort
 #include <stdio.h>		// printf
 
+#include "TypeEfficiency.h"
+
 // Variables
-std::vector<std::string> typeNames;
+extern std::vector<std::string> typeNames;
 
 // Functions
 int loadTypes();

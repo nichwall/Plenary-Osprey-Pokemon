@@ -1,4 +1,6 @@
-#include "Damage_Class.h"
+#include "Move_Damage_Class.h"
+
+std::vector<std::string> damageClass;
 
 int load_Damage_Class() {
 	load_Damage_Class("move_damage_classes.csv");
@@ -48,7 +50,7 @@ std::string getDamageClass(int damageClassID) {
 		boost::split(words, damageClass.at(i), boost::is_any_of(", "));
 		
 		// Check that the IDs match
-		if (damageClassID != std::stoi(words.at(0)) ) {
+		if (damageClassID != atoi(words.at(0).c_str()) ) {
 			continue;
 		}
 		return words.at(1);

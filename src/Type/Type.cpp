@@ -1,5 +1,7 @@
 #include "Type.h"
 
+std::vector<std::string> typeNames;
+
 int loadTypes() {
 	loadTypes("types.csv",9);
 }
@@ -10,15 +12,15 @@ int loadTypes(std::string pathToFile, int languageID) {
 	printf("Loading Pokemon/Move types....");
 	
 	// Open file
-	std::ifstream file (pathToTypes);
+	std::ifstream file (pathToFile.c_str());
 	
-	if (types.is_open()) {
+	if (file.is_open()) {
 		std::string line;
 		// Skip first line of files
 		getline(file,line);
 		
 		// Loop until end of file, putting all of correct language into vector
-		std::vector<std::string> types
+		std::vector<std::string> types;
 		while ( getline(file,line) ) {
 			// Split the string
 			std::vector<std::string> words;
@@ -47,9 +49,12 @@ int loadTypes(std::string pathToFile, int languageID) {
 }
 
 std::string getTypeName(int typeIndex) {
-	// Split the string
-	std::vector<std::string> words;
-	boost::split(words, typeNames.at(i), boost::is_any_of(", "));
-	
-	return words.at(2);
+	for (int i=0; i<typeNames.size(); i++) {
+		// Split the string
+		std::vector<std::string> words;
+		boost::split(words, typeNames.at(i), boost::is_any_of(", "));
+		
+		return words.at(2);
+	}
+	return "";
 }

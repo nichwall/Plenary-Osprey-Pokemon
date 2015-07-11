@@ -11,7 +11,7 @@
 
 // Variables
 int numberOfTypes;
-std::vector<std::string> typeEffectivenessMap;
+extern std::vector<std::string> typeEffectivenessMap;
 
 // Functions
 int loadTypeEffectivenessMap();
