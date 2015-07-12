@@ -3,13 +3,13 @@
 std::vector<std::string> typeNames;
 
 int loadTypes() {
-	loadTypes("types.csv",9);
+	loadTypes("Type/type_names.csv",9);
 }
 int loadTypes(int languageID) {
-	loadTypes("types.csv",languageID);
+	loadTypes("Type/type_names.csv",languageID);
 }
 int loadTypes(std::string pathToFile, int languageID) {
-	printf("Loading Pokemon/Move types....");
+	printf("Loading Pokemon and Move types....");
 	
 	// Open file
 	std::ifstream file (pathToFile.c_str());
@@ -24,7 +24,7 @@ int loadTypes(std::string pathToFile, int languageID) {
 		while ( getline(file,line) ) {
 			// Split the string
 			std::vector<std::string> words;
-			boost::split(words, line, boost::is_any_of(", "));
+			boost::split(words, line, boost::is_any_of(","));
 			
 			// Check it's the right size
 			if (words.size() != 3) {

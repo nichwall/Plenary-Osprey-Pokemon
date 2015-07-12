@@ -3,6 +3,10 @@
  * Inherited by Pokemon, Moves
  */
 
+// Define guard!
+#ifndef TYPE_TYPE_H_
+#define TYPE_TYPE_H_
+
 #include <vector>
 #include <string>
 #include <fstream>
@@ -22,3 +26,5 @@ int loadTypes(int languageID);
 int loadTypes(std::string pathToFile, int languageID);
 
 std::string getTypeName(int typeIndex);
+
+#endif

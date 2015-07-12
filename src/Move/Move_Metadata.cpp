@@ -5,7 +5,7 @@ std::vector<std::string> moveMetaCategories;
 std::vector<std::string> moveMetaStatChanges;
 
 int loadMoveMetaAilments() {
-	return loadMoveMetaAilments("move_meta_ailments.csv");
+	return loadMoveMetaAilments("Move/move_meta_ailments.csv");
 }
 int loadMoveMetaAilments(std::string pathToFile) {
 	printf("Loading Move Meta ailments...");
@@ -47,7 +47,7 @@ int loadMoveMetaAilments(std::string pathToFile) {
 	return 0;
 }
 int loadMoveMetaCategories() {
-	loadMoveMetaCategories("move_meta_categories.csv");
+	loadMoveMetaCategories("Move/move_meta_categories.csv");
 }
 int loadMoveMetaCategories(std::string pathToFile) {
 	printf("Loading Move Meta categories...");
@@ -89,7 +89,7 @@ int loadMoveMetaCategories(std::string pathToFile) {
 	return 0;
 }
 int loadMoveMetaStatChanges() {
-	loadMoveMetaStatChanges("move_meta_stat_changes.csv");
+	loadMoveMetaStatChanges("Move/move_meta_stat_changes.csv");
 }
 int loadMoveMetaStatChanges(std::string pathToFile) {
 	printf("Loading Move Meta stat changes...");

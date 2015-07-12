@@ -1,5 +1,8 @@
 // Stores move metadata, to be inherited by Move
 
+#ifndef MOVE_MOVE_METADATA_H_
+#define MOVE_MOVE_METADATA_H_
+
 #include <vector>
 #include <string>
 #include <fstream>
@@ -30,3 +33,4 @@ inline bool isInteger(const std::string & s) {
    return (*p == 0) ;
 }
 
+#endif

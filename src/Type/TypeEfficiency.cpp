@@ -2,11 +2,15 @@
 
 #include "TypeEfficiency.h"
 
-extern int numberOfTypes;
+// Variables
+int numberOfTypes;
+std::vector<std::string> typeEffectivenessMap;
+
+// Functions
 
 // Default configuration
 int loadTypeEffectivenessMap() {
-	return loadTypeEffectivenessMap("type_effectiveness.csv");
+	return loadTypeEffectivenessMap("Type/type_effectiveness.csv");
 }
 // Custom configuration
 int loadTypeEffectivenessMap(std::string pathToFile) {

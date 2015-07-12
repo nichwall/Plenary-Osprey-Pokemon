@@ -3,6 +3,8 @@
  * BaseMove:	Move data for the move, just actions, etc
  * LearnedMove:	Move data for a learned move, extends BaseMove
  * 				in order to add PP*/
+#ifndef MOVE_MOVE_H_
+#define MOVE_MOVE_H_
 
 #include "Move_Metadata.h"
 
@@ -24,8 +26,8 @@ class BaseMove {
 		int targets;
 		
 		// Identifier, checks against prewritten ids
-		std::string damageClass;
-		std::string effectID;
+		int damageClass;
+		int effectID;
 		int effectChance;
 		
 		int contestTypeID;
@@ -33,8 +35,8 @@ class BaseMove {
 		int superContestEffectID;
 	public:
 		// Constructors
-		BaseMove(int moveID, std::string moveIdentifier, int typeID, int PP, int power, int accuracy, int battlePriority, int battleTargets, std::string moveDamageClass, std::string moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID);
-		BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int PP, int power, int accuracy, int battlePriority, int battleTargets, std::string moveDamageClass, std::string moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID);
+		BaseMove(int moveID, std::string moveIdentifier, int typeID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID);
+		BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID);
 		// Destructors
 		//~BaseMove();
 		// Accessors
@@ -48,8 +50,8 @@ class BaseMove {
 		int getMoveAccuracty();
 		int getMovePriority();
 		int getMoveTargets();
-		std::string getMoveDamageClass();
-		std::string getMoveEffectID();
+		int getMoveDamageClass();
+		int getMoveEffectID();
 		int getMoveEffectChance();
 		int getMoveContestTypeID();
 		int getMoveContestEffectID();
@@ -78,3 +80,5 @@ int loadMoveNames();
 int loadMoveNames(std::string pathToFile);
 int constructBaseMoves();
 int constructBaseMoves(std::string pathToFile);
+
+#endif

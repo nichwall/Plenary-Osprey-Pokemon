@@ -5,7 +5,7 @@ std::vector<BaseMove> baseMoves;
 std::vector<std::string> moveLines;
 std::vector<std::string> moveNames;
 
-BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, int power, int accuracy, int battlePriority, int battleTargets, std::string moveDamageClass, std::string moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID)
+BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID)
 	: identifier(moveIdentifier),
 	  id(moveID),
 	  type1(typeID),
@@ -23,7 +23,7 @@ BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, i
 {
 	
 }
-BaseMove::BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int pp, int power, int accuracy, int battlePriority, int battleTargets, std::string moveDamageClass, std::string moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID)
+BaseMove::BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int pp, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID)
 	: identifier(moveIdentifier),
 	  id(moveID),
 	  type1(type1ID),
@@ -75,10 +75,10 @@ int BaseMove::getMovePriority() {
 int BaseMove::getMoveTargets() {
 	return targets;
 }
-std::string BaseMove::getMoveDamageClass() {
+int BaseMove::getMoveDamageClass() {
 	return damageClass;
 }
-std::string BaseMove::getMoveEffectID() {
+int BaseMove::getMoveEffectID() {
 	return effectID;
 }
 int BaseMove::getMoveEffectChance() {
@@ -96,7 +96,7 @@ int BaseMove::getMoveSuperContestEffectID() {
 
 
 int loadMoves() {
-	loadMoves("moves.csv");
+	loadMoves("Move/moves.csv");
 }
 int loadMoves(std::string pathToFile) {
 	printf("Loading moves....");
@@ -139,7 +139,7 @@ int loadMoves(std::string pathToFile) {
 }
 
 int constructBaseMoves() {
-	constructBaseMoves("moves.csv");
+	constructBaseMoves("Move/moves.csv");
 }
 int constructBaseMoves(std::string pathToFile) {
 	if (loadMoves(pathToFile) != 0) {
@@ -153,6 +153,7 @@ int constructBaseMoves(std::string pathToFile) {
 		std::vector<std::string> words;
 		boost::split(words, line, boost::is_any_of(","));
 		
+		/*
 		std::vector<int> conInt; // (con)verted (int)
 		std::vector<std::string> conStr; // (con)verted (str)
 		for (int i=0; i<words.size(); i++) {
@@ -165,7 +166,17 @@ int constructBaseMoves(std::string pathToFile) {
 			}
 		}
 		if (conStr.size()+conInt.size() == 15) {
-			//BaseMove tempMove (words.at(0),words.at(1),words.at(3));
+			
+		}*/
+		if (words.size() == 15) {
+			// Convert to a nice vector
+			std::vector<int> conInt; // (con)verted (ints)
+			for (int i=0; i<words.size(); i++) {
+				if (i!=1) {
+					conInt.push_back( atoi(words.at(i).c_str()) );
+				}
+			}
+			BaseMove tempBase ( conInt.at(0), words.at(1), conInt.at(2), conInt.at(4), conInt.at(3), conInt.at(5), conInt.at(6), conInt.at(7), conInt.at(8), conInt.at(9), conInt.at(10), conInt.at(11), conInt.at(12), conInt.at(13) );
 		}
 	}
 	printf("done\n");
