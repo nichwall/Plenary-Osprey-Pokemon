@@ -31,7 +31,12 @@ int loadTypes(std::string pathToFile, int languageID) {
 				printf("ERROR(2): Invalid CSV file\n");
 				return 2;
 			}
+			// Check that it's the right language
+			if ( atoi(words.at(1).c_str()) != languageID) {
+				continue;
+			}
 			// Otherwise, add the things!
+			
 			types.push_back(line);
 		}
 		// Sort the type effects

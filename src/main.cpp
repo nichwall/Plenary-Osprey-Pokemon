@@ -1,6 +1,7 @@
 // g++ -o main main.cpp -lGL -lGLU -lglut -lsfml-system -lsfml-window -lsfml-graphics
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 // Including personal header things
 //#include "Player.h"
@@ -48,10 +49,10 @@ int main() {
 	
 	loadTypes();
 	loadTypeEffectivenessMap();
-	loadMoveMetaAilments();
-	loadMoveMetaCategories();
-	loadMoveMetaStatChanges();
-	loadMoves();
+	loadMoveMeta();
+	constructBaseMoves();
+	
+	LearnedMove learned (baseMoves.at(4));
 	
 	while (1) {
 		/* Clear Screen */
@@ -62,7 +63,7 @@ int main() {
 //		window.draw(playerBag.getBagIcon(currentPocket));
 		/* Display changes */
 		//window.display();
-		//usleep(100000);
+		usleep(100000);
 		//printf("Size of movesArray: %d\n",sizeof(movesInGame));
 	}
 }

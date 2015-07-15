@@ -6,6 +6,8 @@
 #ifndef MOVE_MOVE_H_
 #define MOVE_MOVE_H_
 
+#include <iostream>
+
 #include "Move_Metadata.h"
 
 class BaseMove {
@@ -30,13 +32,17 @@ class BaseMove {
 		int effectID;
 		int effectChance;
 		
+		// Meta data
+		MoveMeta meta;
+		
+		// Contest Data
 		int contestTypeID;
 		int contestEffectID;
 		int superContestEffectID;
 	public:
 		// Constructors
-		BaseMove(int moveID, std::string moveIdentifier, int typeID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID);
-		BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID);
+		BaseMove(int moveID, std::string moveIdentifier, int typeID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata);
+		BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata);
 		// Destructors
 		//~BaseMove();
 		// Accessors
@@ -45,7 +51,7 @@ class BaseMove {
 		int getMoveID();
 		int getMoveType1();
 		int getMoveType2();
-		int getMoveBasePP();
+		int getMovePP();
 		int getMovePower();
 		int getMoveAccuracty();
 		int getMovePriority();
@@ -56,17 +62,25 @@ class BaseMove {
 		int getMoveContestTypeID();
 		int getMoveContestEffectID();
 		int getMoveSuperContestEffectID();
+		MoveMeta getMoveMeta();
 		// Modifiers
 		void setMoveName(std::string moveName);
 		
 };
 
-/*class LearnedMove : public BaseMove {
+class LearnedMove {
 	private:
-		
+		BaseMove& base;
+		int ppUsed;
 	public:
-		
-};*/
+		// Constructor
+		LearnedMove (BaseMove& baseMove);
+		// Accessor
+		BaseMove move();
+		int getMovePP();
+		// Modifier
+		void usePPUp(int amount);
+};
 
 // Vector to store the base moves
 extern std::vector<BaseMove> baseMoves;
@@ -77,8 +91,8 @@ extern std::vector<std::string> moveNames;
 int loadMoves();
 int loadMoves(std::string pathToFile);
 int loadMoveNames();
-int loadMoveNames(std::string pathToFile);
+int loadMoveNames(std::string pathToFile, int languageID);
 int constructBaseMoves();
-int constructBaseMoves(std::string pathToFile);
+int constructBaseMoves(std::string pathToMoves, std::string pathToNames);
 
 #endif
