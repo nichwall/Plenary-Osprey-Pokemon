@@ -52,7 +52,7 @@ int main() {
 	loadMoveMeta();
 	constructBaseMoves();
 	
-	LearnedMove learned (baseMoves.at(4));
+	LearnedMove learned (baseMoves.at(47));
 	
 	while (1) {
 		/* Clear Screen */

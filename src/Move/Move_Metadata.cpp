@@ -270,5 +270,11 @@ int loadMoveMeta(std::string pathToAilments, std::string pathToCategories, std::
 		}
 	}
 	printf("done\n");
+	
+	// Delete string vectors of metadata stuff, because it's just using up space
+	moveMetaAilments.clear();
+	moveMetaCategories.clear();
+	moveMetaStatChanges.clear();
+	
 	return 0;
 }

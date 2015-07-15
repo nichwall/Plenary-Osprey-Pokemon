@@ -153,9 +153,7 @@ int loadMoves(std::string pathToFile) {
 		std::sort(tempLines.begin(), tempLines.end());
 		
 		// Insert the vector into vector "baseMoves"
-		for (int i=0; i<tempLines.size(); i++) {
-			moveLines.push_back(tempLines.at(i));
-		}
+		moveLines.swap(tempLines);
 	} else {
 		printf("ERROR(1): Could not open file\n");
 		return 1;
@@ -165,9 +163,9 @@ int loadMoves(std::string pathToFile) {
 }
 
 int loadMoveNames() {
-	loadMoveNames("Move/move_names.csv",9);
+	loadMoveNames("Move/move_names.csv");
 }
-int loadMoveNames(std::string pathToFile, int languageID) {
+int loadMoveNames(std::string pathToFile) {
 	// Open file
 	std::ifstream file (pathToFile.c_str());
 	
@@ -199,9 +197,7 @@ int loadMoveNames(std::string pathToFile, int languageID) {
 		// Sort the type effects
 		std::sort(lines.begin(), lines.end());
 		
-		for (int i=0; i<lines.size(); i++) {
-			moveNames.push_back(lines.at(i));
-		}
+		moveNames.swap(lines);
 	} else {
 		printf("ERROR(1): Could not open file\n");
 		return 1;
@@ -213,7 +209,7 @@ int constructBaseMoves() {
 	constructBaseMoves("Move/moves.csv", "Move/move_names.csv");
 }
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
-	if (loadMoves(pathToMoves) + loadMoveNames(pathToNames,9) != 0) {
+	if (loadMoves(pathToMoves) + loadMoveNames(pathToNames) != 0) {
 		return -1;
 	}
 	
@@ -252,5 +248,10 @@ int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 		}
 	}
 	printf("done\n");
+	
+	// Clean up vectors
+	moveLines.clear();
+	moveNames.clear();
+	
 	return 0;
 }

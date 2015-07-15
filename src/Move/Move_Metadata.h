@@ -12,6 +12,7 @@
 #include <stdio.h>		// printf
 
 #include "Move_Damage_Class.h"
+#include "../Language/Language.h"
 
 class MoveMeta {
 	private:

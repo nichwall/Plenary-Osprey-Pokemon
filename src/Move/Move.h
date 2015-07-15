@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Move_Metadata.h"
+#include "../Language/Language.h"
 
 class BaseMove {
 	private:
@@ -91,7 +92,7 @@ extern std::vector<std::string> moveNames;
 int loadMoves();
 int loadMoves(std::string pathToFile);
 int loadMoveNames();
-int loadMoveNames(std::string pathToFile, int languageID);
+int loadMoveNames(std::string pathToFile);
 int constructBaseMoves();
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames);
 

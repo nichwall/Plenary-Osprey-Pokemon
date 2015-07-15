@@ -16,14 +16,14 @@
 #include <stdio.h>		// printf
 
 #include "TypeEfficiency.h"
+#include "../Language/Language.h"
 
 // Variables
 extern std::vector<std::string> typeNames;
 
 // Functions
 int loadTypes();
-int loadTypes(int languageID);
-int loadTypes(std::string pathToFile, int languageID);
+int loadTypes(std::string pathToFile);
 
 std::string getTypeName(int typeIndex);
 

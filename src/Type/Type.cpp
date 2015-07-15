@@ -3,12 +3,9 @@
 std::vector<std::string> typeNames;
 
 int loadTypes() {
-	loadTypes("Type/type_names.csv",9);
+	loadTypes("Type/type_names.csv");
 }
-int loadTypes(int languageID) {
-	loadTypes("Type/type_names.csv",languageID);
-}
-int loadTypes(std::string pathToFile, int languageID) {
+int loadTypes(std::string pathToFile) {
 	printf("Loading Pokemon and Move types....");
 	
 	// Open file
@@ -42,9 +39,7 @@ int loadTypes(std::string pathToFile, int languageID) {
 		// Sort the type effects
 		std::sort(types.begin(), types.end());
 		
-		for (int i=0; i<types.size(); i++) {
-			typeNames.push_back(types.at(i));
-		}
+		typeNames.swap(types);
 	} else {
 		printf("ERROR(1): Could not open file\n");
 		return 1;

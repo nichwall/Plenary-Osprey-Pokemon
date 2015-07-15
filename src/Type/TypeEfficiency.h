@@ -12,6 +12,8 @@
 #include <algorithm>    // std::sort
 #include <stdio.h>		// printf
 
+#include "../Language/Language.h"
+
 // Variables
 extern int numberOfTypes;
 extern std::vector<std::string> typeEffectivenessMap;
