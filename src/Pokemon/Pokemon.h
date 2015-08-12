@@ -6,6 +6,7 @@
 #include "../Language/Language.h"
 #include "../Type/Type.h"
 #include "../Move/Move.h"
+#include "Evolution.h"
 
 // Defines every Pokemon, but just what is required to define one
 class BasePokemon {
@@ -17,9 +18,9 @@ class BasePokemon {
 		char type2;
 		
 		// Evolution struct
-		struct evolutionyThings {
-			
-		};
+		std::vector<evolutionDataStructure> evolutions;
+		
+		
 	public:
 		
 };
