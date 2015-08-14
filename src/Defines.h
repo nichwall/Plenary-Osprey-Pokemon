@@ -79,4 +79,12 @@
 #define ML_EVOLVED	5
 #define ML_TUTOR	6
 
+// Box/Pokemon Markings
+#define MARK_CIRCLE		1
+#define MARK_TRIANGLE	2
+#define MARK_SQUARE		3
+#define MARK_HEART		4
+#define MARK_STAR		5
+#define MARK_DIAMOND	6
+
 #endif

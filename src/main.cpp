@@ -45,14 +45,16 @@ int itemEngine=1;
 // Bag background
 int main() {
 	sf::RenderWindow window(sf::VideoMode((int)800*zoomLevel,(int)600*zoomLevel),"Plenary-Osprey Pokemon: Bag v0.1");
-	int currentPocket = 0;
+	//int currentPocket = 0;
+	
+	setLanguage(9);
 	
 	loadTypes();
 	loadTypeEffectivenessMap();
 	loadMoveMeta();
 	constructBaseMoves();
 	
-	LearnedMove learned (baseMoves.at(47));
+	//LearnedMove learned (baseMoves.at(47));
 	
 	while (1) {
 		/* Clear Screen */

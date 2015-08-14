@@ -170,6 +170,7 @@ int loadMoveNames() {
 	return loadMoveNames("Move/move_names.csv");
 }
 int loadMoveNames(std::string pathToFile) {
+	printf("Loading move names....");
 	// Open file
 	std::ifstream file (pathToFile.c_str());
 	
@@ -200,12 +201,12 @@ int loadMoveNames(std::string pathToFile) {
 		}
 		// Sort the type effects
 		std::sort(lines.begin(), lines.end());
-		
 		moveNames.swap(lines);
 	} else {
 		printf("ERROR(1): Could not open file\n");
 		return 1;
 	}
+	printf("done\n");
 	return 0;
 }
 
@@ -213,7 +214,7 @@ int constructBaseMoves() {
 	return constructBaseMoves("Move/moves.csv", "Move/move_names.csv");
 }
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
-	if (loadMoves(pathToMoves) + loadMoveNames(pathToNames) != 0) {
+	if ( loadMoves(pathToMoves)!=0 || loadMoveNames(pathToNames)!=0 ) {
 		return -1;
 	}
 	
@@ -237,7 +238,9 @@ int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 			for (unsigned int j=0; j<metas.size(); j++) {
 				if (metas.at(j).getMoveID() == conInt.at(0)) {
 					// Construct the moves!
-					BaseMove tempMove ( conInt.at(0), words.at(1), conInt.at(2), conInt.at(4), conInt.at(3), conInt.at(5), conInt.at(6), conInt.at(7), conInt.at(8), conInt.at(9), conInt.at(10), conInt.at(11), conInt.at(12), conInt.at(13), metas.at(j) );
+					BaseMove tempMove ( conInt.at(0), words.at(1), conInt.at(2), conInt.at(4), conInt.at(3), conInt.at(5),
+										conInt.at(6), conInt.at(7), conInt.at(8), conInt.at(9), conInt.at(10), conInt.at(11),
+										conInt.at(12), conInt.at(13), metas.at(j) );
 					// Add the names to the moves!
 					// Loop until we find the right move id
 					std::vector<std::string> moveNamesSplit;

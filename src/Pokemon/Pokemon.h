@@ -111,7 +111,7 @@ class BoxPokemon: public BasePokemon {
 		// Moves
 		LearnedMove moves [4];
 		// Held item
-		unsigned int heldItem;
+		uint16_t heldItem;
 		// Friendship
 		unsigned char friendship;
 		// Contest stats
@@ -122,6 +122,8 @@ class BoxPokemon: public BasePokemon {
 		unsigned int pokemonOrigin;
 		// Ribbons
 		unsigned int ribbons;
+		// Markings
+		unsigned char markings;
 	public:
 		
 };
@@ -129,6 +131,19 @@ class BoxPokemon: public BasePokemon {
 // Defines Pokemon in the party, extends box
 class PartyPokemon: public BoxPokemon {
 	private:
+		BoxPokemon& box;
+		// Battle stat info
+		unsigned char level;
+		std::array<uint16_t, 6> stats;
+		// Current HP
+		unsigned int currentHP;
+		// Status condition
+		/*
+		 * In order to store sleep remaining, bits 0-2 are turns remaining
+		 * Poison, Burn, Freeze, Paralysis follow
+		 * 7 is used to denote nothing, as BadPoison will take that spot in Battle
+		 */
+		unsigned char statusCondition;
 		
 	public:
 		
