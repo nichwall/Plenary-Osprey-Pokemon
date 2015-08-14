@@ -3,33 +3,16 @@
 #ifndef POKEMON_POKEMON_H_
 #define POKEMON_POKEMON_H_
 
-#include <array>
-
 #include "../Language/Language.h"
 #include "../Type/Type.h"
 #include "../Move/Move.h"
-#include "Evolution.h"
 
-// Defines Stat numbers
-// Stat globals begin with "STAT_"
-#define STAT_HP			0
-#define STAT_ATTACK		1
-#define STAT_DEFENSE	2
-#define STAT_SP_ATTACK	3
-#define STAT_SP_DEFENSE	4
-#define STAT_SPEED		5
-
-// Defines Pokedex colors
-#define COLOR_RED		1
-#define COLOR_BLUE		2
-#define COLOR_YELLOW	3
-#define COLOR_GREEN		4
-#define COLOR_BLACK		5
-#define COLOR_BROWN		6
-#define COLOR_PURPLE	7
-#define COLOR_GRAY		8
-#define COLOR_WHITE		9
-#define COLOR_PINK		10
+// Define the evolution data structure
+struct evolutionDataStructure {
+	uint16_t method;
+	uint16_t parameter;
+	uint16_t target;
+};
 
 // Defines every Pokemon, but just what is required to define one
 class BasePokemon {
@@ -49,7 +32,7 @@ class BasePokemon {
 		char evYeild [6];
 		unsigned int experienceYield;
 		// Base stats
-		unsigned char baseStats [6];
+		std::array<unsigned char, 6> baseStats;
 		// Level up rate
 		char levelUpEquation;
 		// Egg Group

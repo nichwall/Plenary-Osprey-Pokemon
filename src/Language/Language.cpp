@@ -5,7 +5,7 @@ int languageID;
 
 // Constructors
 int loadLanguages() {
-	loadLanguages("Language/language_names.csv");
+	return loadLanguages("Language/language_names.csv");
 }
 int loadLanguages(std::string pathToFile) {
 	printf("Loading language data...");
@@ -49,7 +49,7 @@ int loadLanguages(std::string pathToFile) {
 std::vector<int> getIDs() {
 	std::vector<int> out;
 	int lastID = -100;
-	for (int i=0; i<languages.size(); i++) {
+	for (unsigned int i=0; i<languages.size(); i++) {
 		std::vector<std::string> words;
 		boost::split(words, languages.at(i), boost::is_any_of(","));
 		
@@ -62,7 +62,7 @@ std::vector<int> getIDs() {
 	return out;
 }
 std::string getLanguageName(int id, int locale) {
-	for (int i=0; i<languages.size(); i++) {
+	for (unsigned int i=0; i<languages.size(); i++) {
 		std::vector<std::string> words;
 		boost::split(words, languages.at(i), boost::is_any_of(","));
 		
@@ -74,5 +74,9 @@ std::string getLanguageName(int id, int locale) {
 }
 // Modifiers
 int setLanguage(int id) {
+	if ((id < 0) || (id > 10)) {
+		return 1;
+	}
 	languageID = id;
+	return 0;
 }

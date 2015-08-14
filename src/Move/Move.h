@@ -6,8 +6,6 @@
 #ifndef MOVE_MOVE_H_
 #define MOVE_MOVE_H_
 
-#include <iostream>
-
 #include "Move_Metadata.h"
 #include "../Language/Language.h"
 
@@ -33,17 +31,21 @@ class BaseMove {
 		int effectID;
 		int effectChance;
 		
-		// Meta data
-		MoveMeta meta;
-		
 		// Contest Data
 		int contestTypeID;
 		int contestEffectID;
 		int superContestEffectID;
+		
+		// Meta data
+		MoveMeta meta;
 	public:
 		// Constructors
-		BaseMove(int moveID, std::string moveIdentifier, int typeID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata);
-		BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int PP, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata);
+		BaseMove(int moveID, std::string moveIdentifier, int typeID, int PP, int power, int accuracy, int battlePriority,
+				 int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID,
+				 int contest_EffectID, int superContest_EffectID, MoveMeta metadata);
+/*		BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int PP, int power, int accuracy,
+				 int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance,
+				 int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata);*/
 		// Destructors
 		//~BaseMove();
 		// Accessors
@@ -96,14 +98,6 @@ int loadMoveNames(std::string pathToFile);
 int constructBaseMoves();
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames);
 
-// Defining learn methods
-// Begins with "ML_"
-#define ML_LEVELUP	1
-#define ML_TM		2
-#define ML_HM		3
-#define ML_BREED	4
-#define ML_EVOLVED	5
-#define ML_TUTOR	6
 // Struct for BasePokemon
 struct learnMoveDataStruct {
 	BaseMove move;

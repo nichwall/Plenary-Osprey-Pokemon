@@ -5,7 +5,9 @@ std::vector<BaseMove> baseMoves;
 std::vector<std::string> moveLines;
 std::vector<std::string> moveNames;
 
-BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata)
+BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, int power, int accuracy, int battlePriority,
+				   int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID,
+				   int contest_EffectID, int superContest_EffectID, MoveMeta metadata)
 	: identifier(moveIdentifier),
 	  id(moveID),
 	  type1(typeID),
@@ -24,9 +26,11 @@ BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, i
 {
 	
 }
-BaseMove::BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int pp, int power, int accuracy, int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance, int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata)
-	: identifier(moveIdentifier),
-	  id(moveID),
+/*BaseMove::BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type2ID, int pp, int power, int accuracy,
+				   int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance,
+				   int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata)
+	: id(moveID),
+	  identifier(moveIdentifier),
 	  type1(type1ID),
 	  type2(type2ID),
 	  basePP(pp),
@@ -43,7 +47,7 @@ BaseMove::BaseMove(int moveID, std::string moveIdentifier, int type1ID, int type
 	  meta(metadata)
 {
 	
-}
+}*/
 /*BaseMove::~BaseMove() {
 	
 }*/
@@ -122,7 +126,7 @@ void LearnedMove::usePPUp(int amount) {
 }
 		
 int loadMoves() {
-	loadMoves("Move/moves.csv");
+	return loadMoves("Move/moves.csv");
 }
 int loadMoves(std::string pathToFile) {
 	printf("Loading moves....");
@@ -163,7 +167,7 @@ int loadMoves(std::string pathToFile) {
 }
 
 int loadMoveNames() {
-	loadMoveNames("Move/move_names.csv");
+	return loadMoveNames("Move/move_names.csv");
 }
 int loadMoveNames(std::string pathToFile) {
 	// Open file
@@ -206,7 +210,7 @@ int loadMoveNames(std::string pathToFile) {
 }
 
 int constructBaseMoves() {
-	constructBaseMoves("Move/moves.csv", "Move/move_names.csv");
+	return constructBaseMoves("Move/moves.csv", "Move/move_names.csv");
 }
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 	if (loadMoves(pathToMoves) + loadMoveNames(pathToNames) != 0) {
@@ -215,14 +219,14 @@ int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 	
 	printf("Creating base moves....");
 	// Loop through all lines read from the file
-	for (int i=0; i<moveLines.size(); i++) {
+	for (unsigned int i=0; i<moveLines.size(); i++) {
 		// Split line based on comma
 		std::vector<std::string> words;
 		boost::split(words, moveLines.at(i), boost::is_any_of(","));
 		if (words.size() == 15) {
 			// Convert to a nice vector
 			std::vector<int> conInt; // (con)verted (ints)
-			for (int j=0; j<words.size(); j++) {
+			for (unsigned int j=0; j<words.size(); j++) {
 				if (j!=1) {
 					conInt.push_back( atoi(words.at(j).c_str()) );
 				}
@@ -230,7 +234,7 @@ int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 			
 			// variable for loop for move names
 			int z = 0;
-			for (int j=0; j<metas.size(); j++) {
+			for (unsigned int j=0; j<metas.size(); j++) {
 				if (metas.at(j).getMoveID() == conInt.at(0)) {
 					// Construct the moves!
 					BaseMove tempMove ( conInt.at(0), words.at(1), conInt.at(2), conInt.at(4), conInt.at(3), conInt.at(5), conInt.at(6), conInt.at(7), conInt.at(8), conInt.at(9), conInt.at(10), conInt.at(11), conInt.at(12), conInt.at(13), metas.at(j) );

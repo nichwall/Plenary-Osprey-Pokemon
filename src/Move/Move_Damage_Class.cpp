@@ -3,7 +3,7 @@
 std::vector<std::string> damageClass;
 
 int load_Damage_Class() {
-	load_Damage_Class("move_damage_classes.csv");
+	return load_Damage_Class("move_damage_classes.csv");
 }
 int load_Damage_Class(std::string pathToFile) {
 	printf("Loading Damage classes....");
@@ -32,7 +32,7 @@ int load_Damage_Class(std::string pathToFile) {
 		// Sort the lines
 		std::sort(lines.begin(), lines.end());
 		
-		for (int i=0; i<lines.size(); i++) {
+		for (unsigned int i=0; i<lines.size(); i++) {
 			damageClass.push_back(lines.at(i));
 		}
 	} else {
@@ -44,7 +44,7 @@ int load_Damage_Class(std::string pathToFile) {
 }
 
 std::string getDamageClass(int damageClassID) {
-	for (int i=0; i<damageClass.size(); i++) {
+	for (unsigned int i=0; i<damageClass.size(); i++) {
 		// Split the string
 		std::vector<std::string> words;
 		boost::split(words, damageClass.at(i), boost::is_any_of(", "));

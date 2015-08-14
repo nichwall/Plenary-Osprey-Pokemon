@@ -5,7 +5,9 @@ std::vector<std::string> moveMetaAilments;
 std::vector<std::string> moveMetaCategories;
 std::vector<std::string> moveMetaStatChanges;
 
-MoveMeta::MoveMeta(int move_id, int catagory_id, std::string catagory_name, int ailment_id, std::string ailment_name, int min_hits, int max_hits, int min_turns, int max_turns, int drain_perc, int heal_perc, int crit_rate, int ailment_chance, int flinch_chance, int stat_chance, std::vector<int> stat_deltas)
+MoveMeta::MoveMeta(int move_id, int catagory_id, std::string catagory_name, int ailment_id, std::string ailment_name,
+				   int min_hits, int max_hits, int min_turns, int max_turns, int drain_perc, int heal_perc, int crit_rate,
+				   int ailment_chance, int flinch_chance, int stat_chance, std::array<int, 8> stat_deltas)
 	: moveID(move_id),
 	  catagoryID(catagory_id),
 	  catagory (catagory_name),
@@ -64,10 +66,10 @@ int MoveMeta::getFlinchChance() {
 int MoveMeta::getStatChangeChance() {
 	return statChance;
 }
-std::vector<int> MoveMeta::getStatsChanged() {
+std::array<int, 8> MoveMeta::getStatsChanged() {
 	return statsChanged;
 }
-int MoveMeta::getStatDelta(int stat) {
+char MoveMeta::getStatDelta(unsigned int stat) {
 	if (stat < 0 || stat > statsChanged.size()) {
 		return 0;
 	}
@@ -92,7 +94,7 @@ int loadMoveMetaAilments(std::string pathToFile) {
 		
 		// Loop through file and get all the lines
 		while ( getline(file,line) ) {
-			// Split the string
+			// Split the staring
 			std::vector<std::string> words;
 			boost::split(words, line, boost::is_any_of(", "));
 			
@@ -106,7 +108,7 @@ int loadMoveMetaAilments(std::string pathToFile) {
 		}
 		// Sort the lines
 		std::sort(tempLines.begin(), tempLines.end());
-		for (int i=0; i<tempLines.size(); i++) {
+		for (unsigned int i=0; i<tempLines.size(); i++) {
 			moveMetaAilments.push_back(tempLines.at(i));
 		}
 	} else {
@@ -117,7 +119,7 @@ int loadMoveMetaAilments(std::string pathToFile) {
 	return 0;
 }
 int loadMoveMetaCategories() {
-	loadMoveMetaCategories("Move/move_meta_categories.csv");
+	return loadMoveMetaCategories("Move/move_meta_categories.csv");
 }
 int loadMoveMetaCategories(std::string pathToFile) {
 	printf("Loading Move Meta categories...");
@@ -148,7 +150,7 @@ int loadMoveMetaCategories(std::string pathToFile) {
 		}
 		// Sort the lines
 		std::sort(tempLines.begin(), tempLines.end());
-		for (int i=0; i<tempLines.size(); i++) {
+		for (unsigned int i=0; i<tempLines.size(); i++) {
 			moveMetaCategories.push_back(tempLines.at(i));
 		}
 	} else {
@@ -159,7 +161,7 @@ int loadMoveMetaCategories(std::string pathToFile) {
 	return 0;
 }
 int loadMoveMetaStatChanges() {
-	loadMoveMetaStatChanges("Move/move_meta_stat_changes.csv");
+	return loadMoveMetaStatChanges("Move/move_meta_stat_changes.csv");
 }
 int loadMoveMetaStatChanges(std::string pathToFile) {
 	printf("Loading Move Meta stat changes...");
@@ -190,7 +192,7 @@ int loadMoveMetaStatChanges(std::string pathToFile) {
 		}
 		// Sort the lines
 		std::sort(tempLines.begin(), tempLines.end());
-		for (int i=0; i<tempLines.size(); i++) {
+		for (unsigned int i=0; i<tempLines.size(); i++) {
 			moveMetaStatChanges.push_back(tempLines.at(i));
 		}
 	} else {
@@ -237,22 +239,22 @@ int loadMoveMeta(std::string pathToAilments, std::string pathToCategories, std::
 			int moveID = atoi(words.at(0).c_str());
 			std::string ailment;
 			std::string catagory;
-			std::vector<int> stats;
-			for (int i=0; i<moveMetaAilments.size(); i++) {
+			std::array<int, 8> stats;
+			for (unsigned int i=0; i<moveMetaAilments.size(); i++) {
 				std::vector<std::string> nestedWords;
 				boost::split(nestedWords, moveMetaAilments.at(i), boost::is_any_of(","));
 				if ( atoi(nestedWords.at(0).c_str()) == atoi(words.at(2).c_str()) ) {
 					ailment = moveMetaAilments.at(i);
 				}
 			}
-			for (int i=0; i<moveMetaCategories.size(); i++) {
+			for (unsigned int i=0; i<moveMetaCategories.size(); i++) {
 				std::vector<std::string> nestedWords;
 				boost::split(nestedWords, moveMetaCategories.at(i), boost::is_any_of(","));
 				if ( atoi(nestedWords.at(0).c_str()) == atoi(words.at(1).c_str()) ) {
 					catagory = moveMetaCategories.at(i);
 				}
 			}
-			for (int i=0; i<moveMetaStatChanges.size(); i++) {
+			for (unsigned int i=0; i<moveMetaStatChanges.size(); i++) {
 				std::vector<std::string> nestedWords;
 				boost::split(nestedWords, moveMetaStatChanges.at(i), boost::is_any_of(","));
 				if ( atoi(nestedWords.at(0).c_str()) == moveID ) {
@@ -265,7 +267,11 @@ int loadMoveMeta(std::string pathToAilments, std::string pathToCategories, std::
 			std::vector<std::string> catSplit;
 			boost::split(catSplit, catagory, boost::is_any_of(","));
 			
-			MoveMeta tempMeta ( moveID, atoi(words.at(1).c_str()), catSplit.at(1), atoi(words.at(2).c_str()), ailSplit.at(1), atoi(words.at(3).c_str()), atoi(words.at(4).c_str()), atoi(words.at(5).c_str()), atoi(words.at(6).c_str()), atoi(words.at(7).c_str()), atoi(words.at(8).c_str()), atoi(words.at(9).c_str()), atoi(words.at(10).c_str()), atoi(words.at(11).c_str()), atoi(words.at(12).c_str()), stats );
+			MoveMeta tempMeta ( moveID, atoi(words.at(1).c_str()), catSplit.at(1), atoi(words.at(2).c_str()), ailSplit.at(1),
+								atoi(words.at(3).c_str()), atoi(words.at(4).c_str()), atoi(words.at(5).c_str()),
+								atoi(words.at(6).c_str()), atoi(words.at(7).c_str()), atoi(words.at(8).c_str()),
+								atoi(words.at(9).c_str()), atoi(words.at(10).c_str()), atoi(words.at(11).c_str()),
+								atoi(words.at(12).c_str()), stats );
 			metas.push_back(tempMeta);
 		}
 	}

@@ -3,16 +3,10 @@
 #ifndef MOVE_MOVE_METADATA_H_
 #define MOVE_MOVE_METADATA_H_
 
-#include <vector>
-#include <string>
-#include <fstream>
-#include <boost/algorithm/string.hpp>
-#include <math.h>
-#include <algorithm>    // std::sort
-#include <stdio.h>		// printf
+#include "../Language/Language.h"
+#include "../Defines.h"
 
 #include "Move_Damage_Class.h"
-#include "../Language/Language.h"
 
 class MoveMeta {
 	private:
@@ -36,10 +30,12 @@ class MoveMeta {
 		int statChance;
 		
 		// Stat changes
-		std::vector<int> statsChanged;
+		std::array<int, 8> statsChanged;
 	public:
 		// Constructor
-		MoveMeta(int move_id, int catagory_id, std::string catagory_name, int ailment_id, std::string ailment_name, int min_hits, int max_hits, int min_turns, int max_turns, int drain_perc, int heal_perc, int crit_rate, int ailment_chance, int flinch_chance, int stat_chance, std::vector<int> stat_deltas);
+		MoveMeta(int move_id, int catagory_id, std::string catagory_name, int ailment_id, std::string ailment_name,
+				 int min_hits, int max_hits, int min_turns, int max_turns, int drain_perc, int heal_perc, int crit_rate,
+				 int ailment_chance, int flinch_chance, int stat_chance, std::array<int, 8> stat_deltas);
 		// Destructor
 		//~MoveMeta();
 		// Accessor
@@ -56,8 +52,8 @@ class MoveMeta {
 		int getMetaAilmentChance();
 		int getFlinchChance();
 		int getStatChangeChance();
-		std::vector<int> getStatsChanged();
-		int getStatDelta(int stat);
+		std::array<int, 8> getStatsChanged();
+		char getStatDelta(unsigned int stat);
 		// Modifier
 };
 

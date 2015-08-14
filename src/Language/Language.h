@@ -3,13 +3,7 @@
 #ifndef LANGUAGE_LANGUAGE_H_
 #define LANGUAGE_LANGUAGE_H_
 
-#include <vector>
-#include <string>
-#include <fstream>
-#include <boost/algorithm/string.hpp>
-#include <math.h>
-#include <algorithm>    // std::sort
-#include <stdio.h>		// printf
+#include "../Defines.h"
 
 extern std::vector<std::string> languages;
 extern int languageID;

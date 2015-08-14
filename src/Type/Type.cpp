@@ -3,7 +3,7 @@
 std::vector<std::string> typeNames;
 
 int loadTypes() {
-	loadTypes("Type/type_names.csv");
+	return loadTypes("Type/type_names.csv");
 }
 int loadTypes(std::string pathToFile) {
 	printf("Loading Pokemon and Move types....");
@@ -49,7 +49,7 @@ int loadTypes(std::string pathToFile) {
 }
 
 std::string getTypeName(int typeIndex) {
-	for (int i=0; i<typeNames.size(); i++) {
+	for (unsigned int i=0; i<typeNames.size(); i++) {
 		// Split the string
 		std::vector<std::string> words;
 		boost::split(words, typeNames.at(i), boost::is_any_of(", "));

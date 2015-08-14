@@ -1,7 +1,6 @@
 // g++ -o main main.cpp -lGL -lGLU -lglut -lsfml-system -lsfml-window -lsfml-graphics
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 // Including personal header things
 //#include "Player.h"

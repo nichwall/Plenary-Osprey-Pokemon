@@ -52,7 +52,7 @@ int loadTypeEffectivenessMap(std::string pathToFile) {
 			return 3;
 		}
 		numberOfTypes = typeCount;
-		for (int i=0; i<tempEffects.size(); i++) {
+		for (unsigned int i=0; i<tempEffects.size(); i++) {
 			typeEffectivenessMap.push_back(tempEffects.at(i));
 		}
 	} else {
@@ -67,7 +67,7 @@ int loadTypeEffectivenessMap(std::string pathToFile) {
  * Negative answer indicates error
  */
 int getEffectiveness(int attackType, int defenseType) {
-	for (int i=0; i<typeEffectivenessMap.size(); i++) {
+	for (unsigned int i=0; i<typeEffectivenessMap.size(); i++) {
 		// Split the string
 		std::vector<std::string> words;
 		boost::split(words, typeEffectivenessMap.at(i), boost::is_any_of(", "));
