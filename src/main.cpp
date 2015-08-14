@@ -10,6 +10,7 @@
 
 #include "Move/Move.h"
 #include "Type/Type.h"
+#include "Pokemon/Pokemon.h"
 
 /* Get zoom level of the game.
  * Supported levels will be

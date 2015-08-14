@@ -96,4 +96,19 @@ int loadMoveNames(std::string pathToFile);
 int constructBaseMoves();
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames);
 
+// Defining learn methods
+// Begins with "ML_"
+#define ML_LEVELUP	1
+#define ML_TM		2
+#define ML_HM		3
+#define ML_BREED	4
+#define ML_EVOLVED	5
+#define ML_TUTOR	6
+// Struct for BasePokemon
+struct learnMoveDataStruct {
+	BaseMove move;
+	uint16_t method;
+	uint16_t data;
+};
+
 #endif
