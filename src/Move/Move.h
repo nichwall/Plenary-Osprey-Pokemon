@@ -73,13 +73,14 @@ class BaseMove {
 
 class LearnedMove {
 	private:
-		BaseMove& base;
+		BaseMove * base;
 		int ppUsed;
 	public:
 		// Constructor
-		LearnedMove (BaseMove& baseMove);
+		LearnedMove ();
+		LearnedMove (BaseMove baseMove);
 		// Accessor
-		BaseMove move();
+		BaseMove * move();
 		int getMovePP();
 		// Modifier
 		void usePPUp(int amount);

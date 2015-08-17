@@ -106,14 +106,19 @@ void BaseMove::setMoveName(std::string moveName) {
 	name = moveName;
 }
 
-LearnedMove::LearnedMove(BaseMove& baseMove) : base(baseMove) {
+LearnedMove::LearnedMove() {
+	base = 0;
 	ppUsed = 0;
 }
-BaseMove LearnedMove::move() {
+LearnedMove::LearnedMove(BaseMove baseMove) {
+	base = &baseMove;
+	ppUsed = 0;
+}
+BaseMove * LearnedMove::move() {
 	return base;
 }
 int LearnedMove::getMovePP() {
-	return base.getMovePP() * (5+ppUsed) / 5;
+	return base->getMovePP() * (5+ppUsed) / 5;
 }
 void LearnedMove::usePPUp(int amount) {
 	ppUsed += amount;

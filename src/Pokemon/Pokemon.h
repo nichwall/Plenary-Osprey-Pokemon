@@ -29,7 +29,7 @@ class BasePokemon {
 		// Evolution structs
 		std::vector<evolutionDataStructure> evolutions;
 		// EV Yeild
-		char evYeild [6];
+		std::array<char, 6> evYeild;
 		unsigned int experienceYield;
 		// Base stats
 		std::array<unsigned char, 6> baseStats;
@@ -43,7 +43,7 @@ class BasePokemon {
 		// Gender ratio
 		unsigned char genderRatio;
 		// Hatch time/Egg cycles
-		unsigned char eggCylces;
+		unsigned char eggCycles;
 		// Height and Weight
 		unsigned int heightAndWeight;
 		// Body Style
@@ -58,8 +58,8 @@ class BasePokemon {
 		// Constructors
 		BasePokemon();
 		BasePokemon(std::string name, int regionNum, int nationalNum, std::string p_species, char firstType, char secondType,
-					std::vector<evolutionDataStructure> p_evolutions, std::vector<char> evYeilds, unsigned int xpYeild,
-					std::vector<unsigned char> p_baseStats, char growthRate, char p_eggGroup1, char p_eggGroup2,
+					std::vector<evolutionDataStructure> p_evolutions, std::array<char, 6> evYeilds, unsigned int xpYeild,
+					std::array<unsigned char, 6> p_baseStats, char growthRate, char p_eggGroup1, char p_eggGroup2,
 					std::vector<learnMoveDataStruct> p_learnableMoves, unsigned char p_genderRatio, unsigned char p_eggCycles,
 					unsigned int p_HeightAndWeight, unsigned char p_bodyStyle, unsigned char p_pokedexColor, unsigned char p_baseFriend);
 		
@@ -89,6 +89,7 @@ class BasePokemon {
 		unsigned char getBodyStyle();
 		unsigned char getPokedexColor();
 		unsigned char getBaseFriendship();
+		//Abilites Accessor!
 		
 		// Modifiers
 		// None included so far
@@ -97,25 +98,25 @@ class BasePokemon {
 // Defines Pokemon that have been caught, extends base
 class BoxPokemon: public BasePokemon {
 	private:
-		BasePokemon& base;
+		BasePokemon * base;
 		// Nickname, if applicable
 		std::string nickname;
 		// IVs, egg, and ability number
 		unsigned int ivs;
 		// EVs gained
-		unsigned char evs [6];
+		std::array<unsigned char, 6> evs;
 		// Experience
 		unsigned int experience;
 		// Personality Value
 		unsigned int personalityValue;
 		// Moves
-		LearnedMove moves [4];
+		std::array<LearnedMove, 4> moves;
 		// Held item
 		uint16_t heldItem;
 		// Friendship
 		unsigned char friendship;
 		// Contest stats
-		unsigned char contestStats [6];
+		std::array<unsigned char, 6> contestStats;
 		// Pokerus
 		unsigned char pokerusStatus;
 		// Pokemon origin
@@ -125,13 +126,19 @@ class BoxPokemon: public BasePokemon {
 		// Markings
 		unsigned char markings;
 	public:
-		
+		// Constructors
+		BoxPokemon(BasePokemon pokemon);
+		BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs, std::array<unsigned char, 6> p_evs, unsigned int p_xp,
+				   unsigned int p_personalityValue, std::array<LearnedMove, 4> p_moves, uint16_t p_heldItem, unsigned char p_friendship,
+				   std::array<unsigned char, 6> p_contestStats, unsigned char p_pokerus, unsigned int origin,
+				   unsigned int p_ribbons, unsigned char p_markings);
+		// Accessors
 };
 
 // Defines Pokemon in the party, extends box
 class PartyPokemon: public BoxPokemon {
 	private:
-		BoxPokemon& box;
+		BoxPokemon * box;
 		// Battle stat info
 		unsigned char level;
 		std::array<uint16_t, 6> stats;
