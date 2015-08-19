@@ -2,6 +2,10 @@
 
 #include "Pokemon.h"
 
+/***********************************************************************************************************************
+*	Base Pokemon																									   *
+************************************************************************************************************************/
+
 // Constructors
 BasePokemon::BasePokemon () {
 	
@@ -112,6 +116,9 @@ unsigned char BasePokemon::getBaseFriendship() {
 	return baseFriendship;
 }
 
+/***********************************************************************************************************************
+*	Box Pokemon																										   *
+************************************************************************************************************************/
 BoxPokemon::BoxPokemon(BasePokemon pokemon)
 	: base(&pokemon)
 {
@@ -139,5 +146,267 @@ BoxPokemon::BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs
 {
 	
 }
+// Accessors
+BasePokemon * BoxPokemon::getBase() {
+	return base;
+}
+std::string BoxPokemon::getNickname() {
+	return nickname;
+}
+unsigned int BoxPokemon::get_ivs() {
+	return ivs;
+}
+unsigned char BoxPokemon::get_iv(unsigned int stat) {
+	// FINISH
+	return 0;
+}
+std::array<unsigned char, 6> BoxPokemon::get_evs() {
+	return evs;
+}
+unsigned char BoxPokemon::get_evs(unsigned int stat) {
+	return evs.at(stat);
+}
+unsigned int BoxPokemon::get_experience() {
+	return experience;
+}
+unsigned int BoxPokemon::getPersonalityValue() {
+	return personalityValue;
+}
 
+std::array<LearnedMove, 4> BoxPokemon::getMoves() {
+	return moves;
+}
+LearnedMove BoxPokemon::getMove(unsigned int moveIndex) {
+	return moves.at(moveIndex);
+}
+uint16_t BoxPokemon::getHeldItem() {
+	return heldItem;
+}
+unsigned char BoxPokemon::getFriendship() {
+	return friendship;
+}
+std::array<unsigned char, 6> BoxPokemon::getContestStats() {
+	return contestStats;
+}
+unsigned char BoxPokemon::getPokerusStatus() {
+	return pokerusStatus;
+}
+unsigned char BoxPokemon::getPokerusStrain() {
+	return pokerusStatus/16%4;
+}
+unsigned char BoxPokemon::getPokerusRemaining() {
+	return pokerusStatus%16;
+}
+int BoxPokemon::isInfectedPokerus() {
+	return ( (pokerusStatus/16) != 0 );
+}
+int BoxPokemon::isCuredPokerus() {
+	return ( isInfectedPokerus() && ( getPokerusRemaining() == 0) );
+}
+unsigned int BoxPokemon::getOrigin() {
+	return pokemonOrigin;
+}
 
+unsigned int BoxPokemon::getRibbons() {
+	return ribbons;
+}
+unsigned char BoxPokemon::getMarkings() {
+	return markings;
+}
+int BoxPokemon::hasMarking(unsigned int mark) {
+	switch (mark) {
+		case MARK_CIRCLE:
+		case MARK_TRIANGLE:
+		case MARK_SQUARE:
+		case MARK_HEART:
+		case MARK_STAR:
+		case MARK_DIAMOND:
+			break;
+		default:
+			return -1;
+	}
+	return ( markings >> mark ) & 1;
+}
+// Modifiers
+int BoxPokemon::setNickname(std::string nick) {
+	nickname = nick;
+	return 0;
+}
+int BoxPokemon::shuffleIVs() {
+	return 0;
+}
+int BoxPokemon::deltaEV(unsigned char stat, char delta) {
+	switch (stat) {
+		case STAT_HP:
+		case STAT_ATTACK:
+		case STAT_DEFENSE:
+		case STAT_SPEED:
+		case STAT_SP_ATTACK:
+		case STAT_SP_DEFENSE:
+			break;
+		default:
+			return -1;
+	}
+	if ( (stat < 0) || (stat >= evs.size()) ) {
+		return -2;
+	}
+	if ( ( evs.at(stat) + delta ) > 255 ) {
+		evs.at(stat) = 255;
+		return 0;
+	}
+	evs.at(stat) += delta;
+	return 0;
+}
+int BoxPokemon::setXP(unsigned int newXP) {
+	experience = newXP;
+	return 0;
+}
+int BoxPokemon::deltaXP(int delta) {
+	experience += delta;
+	return 0;
+}
+int BoxPokemon::setMove(LearnedMove move, int index) {
+	unsigned int temp = index;
+	if ( (index <0) || (temp >= moves.size()) ) {
+		return -2;
+	}
+	moves.at(index) = move;
+	return 0;
+}
+int BoxPokemon::deltaFriendship(char delta) {
+	if ( (delta+friendship) > 255 ) {
+		friendship = 255;
+		return 0;
+	}
+	if ( (delta+friendship) < 0 ) {
+		friendship = 0;
+		return 0;
+	}
+	friendship += delta;
+	return 0;
+}
+uint16_t BoxPokemon::takeItem() {
+	uint16_t item = heldItem;
+	heldItem = 0;
+	return item;
+}
+int BoxPokemon::giveItem(uint16_t item) {
+	// Destroys held item!
+	heldItem = item;
+	return 0;
+}
+uint16_t BoxPokemon::swapItem(uint16_t newItem) {
+	uint16_t item = heldItem;
+	heldItem = newItem;
+	return item;
+}
+int BoxPokemon::deltaContestStats(std::array<unsigned char, 6> deltas) {
+	if ( deltas.size() != contestStats.size() ) {
+		return -1;
+	}
+	for (unsigned int i=0; i<deltas.size(); i++) {
+		if ( (contestStats.at(i) + deltas.at(i)) > 255 ) {
+			contestStats.at(i) = 255;
+		} else {
+			contestStats.at(i) += deltas.at(i);
+		}
+	}
+	return 0;
+}
+int BoxPokemon::deltaContestStat(char delta, int stat) {
+	unsigned int temp = stat;
+	if ( (stat < 0) || (temp >= contestStats.size()) ) {
+		return -2;
+	}
+	if (contestStats.at(stat) + delta > 255) {
+		contestStats.at(stat) = 255;
+		return 0;
+	}
+	if (contestStats.at(stat) + delta < 0) {
+		contestStats.at(stat) = 0;
+		return 0;
+	}
+	contestStats.at(stat) += delta;
+	return 0;
+}
+int BoxPokemon::setContestStats(std::array<unsigned char, 6> newStats) {
+	if ( newStats.size() != contestStats.size() ) {
+		return -1;
+	}
+	for (unsigned int i=0; i<newStats.size(); i++) {
+		contestStats.at(i) = newStats.at(i);
+	}
+	return 0;
+}
+int BoxPokemon::setContestStat(unsigned char statValue, int stat) {
+	unsigned int temp = stat;
+	if ( (stat < 0) || (temp >= contestStats.size()) ) {
+		return -2;
+	}
+	contestStats.at(stat) = statValue;
+	return 0;
+}
+int BoxPokemon::pokerusAged() {
+	pokerusStatus--;
+	return 0;
+}
+int BoxPokemon::setPokerusStrain(unsigned char strain) {
+	pokerusStatus += strain;
+	return 0;
+}
+int BoxPokemon::setPokerusDuration(unsigned char age) {
+	pokerusStatus += age;
+	return 0;
+}
+int BoxPokemon::setPokerusStatus(unsigned char pokerus) {
+	pokerusStatus = pokerus;
+	return 0;
+}
+int BoxPokemon::addRibbon(unsigned int ribbon) {
+	// Need to add, but ribbons aren't critical
+	return 0;
+}
+int BoxPokemon::removeRibbon(unsigned int ribbon) {
+	// See above
+	return 0;
+}
+int BoxPokemon::addMarking(unsigned char mark) {
+	switch (mark) {
+		case MARK_CIRCLE:
+		case MARK_TRIANGLE:
+		case MARK_SQUARE:
+		case MARK_HEART:
+		case MARK_STAR:
+		case MARK_DIAMOND:
+			break;
+		default:
+			return -1;
+	}
+	// Check if it's already set
+	if ( ( (markings >> mark) & 1) != 0 ){
+		return 0;
+	}
+	// Otherwise, just add the marking
+	markings += mark;
+	return 0;
+}
+int BoxPokemon::removeMarking(unsigned char mark) {
+	switch (mark) {
+		case MARK_CIRCLE:
+		case MARK_TRIANGLE:
+		case MARK_SQUARE:
+		case MARK_HEART:
+		case MARK_STAR:
+		case MARK_DIAMOND:
+			break;
+		default:
+			return -1;
+	}
+	// Check if it's already set
+	if ( ( (markings >> mark) & 1) == 0 ){
+		return 0;
+	}
+	// Otherwise, just remove the marking
+	markings -= mark;
+	return 0;
+}

@@ -113,7 +113,7 @@ class BoxPokemon: public BasePokemon {
 		std::array<LearnedMove, 4> moves;
 		// Held item
 		uint16_t heldItem;
-		// Friendship
+		// Friendship, or remaining egg cycles for egg
 		unsigned char friendship;
 		// Contest stats
 		std::array<unsigned char, 6> contestStats;
@@ -133,6 +133,53 @@ class BoxPokemon: public BasePokemon {
 				   std::array<unsigned char, 6> p_contestStats, unsigned char p_pokerus, unsigned int origin,
 				   unsigned int p_ribbons, unsigned char p_markings);
 		// Accessors
+		BasePokemon * getBase();
+		std::string getNickname();
+		unsigned int get_ivs();
+		unsigned char get_iv(unsigned int stat);
+		std::array<unsigned char, 6> get_evs();
+		unsigned char get_evs(unsigned int stat);
+		unsigned int get_experience();
+		unsigned int getPersonalityValue();
+		
+		std::array<LearnedMove, 4> getMoves();
+		LearnedMove getMove(unsigned int moveIndex);
+		uint16_t getHeldItem();
+		unsigned char getFriendship();
+		std::array<unsigned char, 6> getContestStats();
+		unsigned char getPokerusStatus();
+		unsigned char getPokerusStrain();
+		unsigned char getPokerusRemaining();
+		int isInfectedPokerus();
+		int isCuredPokerus();
+		unsigned int getOrigin();
+		
+		unsigned int getRibbons();
+		unsigned char getMarkings();
+		int hasMarking(unsigned int mark);
+		// Modifiers
+		int setNickname(std::string nick);
+		int shuffleIVs();
+		int deltaEV(unsigned char stat, char delta);
+		int setXP(unsigned int newXP);
+		int deltaXP(int delta);
+		int setMove(LearnedMove move, int index);
+		int deltaFriendship(char delta);
+		uint16_t takeItem();
+		int giveItem(uint16_t item);
+		uint16_t swapItem(uint16_t newItem);
+		int deltaContestStats(std::array<unsigned char, 6> deltas);
+		int deltaContestStat(char delta, int stat);
+		int setContestStats(std::array<unsigned char, 6> newStats);
+		int setContestStat(unsigned char statValue, int stat);
+		int pokerusAged();
+		int setPokerusStrain(unsigned char strain);
+		int setPokerusDuration(unsigned char age);
+		int setPokerusStatus(unsigned char pokerus);
+		int addRibbon(unsigned int ribbon);
+		int removeRibbon(unsigned int ribbon);
+		int addMarking(unsigned char mark);
+		int removeMarking(unsigned char mark);
 };
 
 // Defines Pokemon in the party, extends box

@@ -53,11 +53,19 @@
 #define STAT_HP			0
 #define STAT_ATTACK		1
 #define STAT_DEFENSE	2
-#define STAT_SP_ATTACK	3
-#define STAT_SP_DEFENSE	4
-#define STAT_SPEED		5
+#define STAT_SPEED		3
+#define STAT_SP_ATTACK	4
+#define STAT_SP_DEFENSE	5
 #define STAT_EVASIVNESS	6
 #define STAT_ACCURACY	7
+
+// Define IV numbers for stats
+#define IV_HP			0
+#define IV_ATTACK		32
+#define IV_DEFENSE		1024
+#define IV_SPEED		32768
+#define IV_SP_ATTACK	1048576
+#define IV_SP_DEFENSE	33554432
 
 // Defines Pokedex colors
 #define COLOR_RED		1
@@ -82,9 +90,16 @@
 // Box/Pokemon Markings
 #define MARK_CIRCLE		1
 #define MARK_TRIANGLE	2
-#define MARK_SQUARE		3
-#define MARK_HEART		4
-#define MARK_STAR		5
-#define MARK_DIAMOND	6
+#define MARK_SQUARE		4
+#define MARK_HEART		8
+#define MARK_STAR		16
+#define MARK_DIAMOND	32
+
+// Contest catagories
+#define CONTEST_COOL	1
+#define CONTEST_BEAUTY	2
+#define CONTEST_CUTE	3
+#define CONTEST_CLEVER	4
+#define CONTEST_TOUGH	5
 
 #endif
