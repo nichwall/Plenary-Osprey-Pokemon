@@ -127,7 +127,7 @@ class BoxPokemon: public BasePokemon {
 		unsigned char markings;
 	public:
 		// Constructors
-		BoxPokemon(BasePokemon pokemon);
+		BoxPokemon();
 		BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs, std::array<unsigned char, 6> p_evs, unsigned int p_xp,
 				   unsigned int p_personalityValue, std::array<LearnedMove, 4> p_moves, uint16_t p_heldItem, unsigned char p_friendship,
 				   std::array<unsigned char, 6> p_contestStats, unsigned char p_pokerus, unsigned int origin,
@@ -139,8 +139,15 @@ class BoxPokemon: public BasePokemon {
 		unsigned char get_iv(unsigned int stat);
 		std::array<unsigned char, 6> get_evs();
 		unsigned char get_evs(unsigned int stat);
+		int get_stat(char stat);
 		unsigned int get_experience();
+		unsigned int get_level();
 		unsigned int getPersonalityValue();
+		char isMale();
+		// Ability * getAbility();
+		char getNature();
+		char getShinyness();
+		char getCharacteristic();
 		
 		std::array<LearnedMove, 4> getMoves();
 		LearnedMove getMove(unsigned int moveIndex);
@@ -200,7 +207,9 @@ class PartyPokemon: public BoxPokemon {
 		unsigned char statusCondition;
 		
 	public:
-		
+		// Constructors
+		PartyPokemon();
+		PartyPokemon(BoxPokemon box);
 };
 
 // Defines Pokemon in battle, extends party

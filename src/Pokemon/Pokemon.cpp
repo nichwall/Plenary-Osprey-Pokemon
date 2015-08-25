@@ -119,9 +119,7 @@ unsigned char BasePokemon::getBaseFriendship() {
 /***********************************************************************************************************************
 *	Box Pokemon																										   *
 ************************************************************************************************************************/
-BoxPokemon::BoxPokemon(BasePokemon pokemon)
-	: base(&pokemon)
-{
+BoxPokemon::BoxPokemon() {
 	
 }
 
@@ -166,11 +164,83 @@ std::array<unsigned char, 6> BoxPokemon::get_evs() {
 unsigned char BoxPokemon::get_evs(unsigned int stat) {
 	return evs.at(stat);
 }
+int BoxPokemon::get_stat(char stat) {
+	// Calculate HP stat
+	if ( stat == STAT_HP ) {
+		
+	}
+	return 0;
+}
 unsigned int BoxPokemon::get_experience() {
 	return experience;
 }
+unsigned int BoxPokemon::get_level() {
+	int tempLevel = 1;
+	unsigned int tempExp = 0;
+	
+	switch( getBase()->getGrowthRate() ) {
+		case LV_ERRATIC:
+			
+		case LV_FAST:
+			return ( pow((experience * 5/4), 1/3) );
+		case LV_M_FAST:
+			return ( pow( experience, 1/3) );
+		case LV_M_SLOW:
+			while ( tempExp < experience ) {
+				tempLevel++;
+				tempExp = (6/5)*pow(tempLevel,3) - 15*pow(tempLevel,2) + 100*tempLevel - 140;
+			}
+			return tempLevel;
+		case LV_SLOW:
+			return ( pow( (experience)*(4/5), 1/3 ) );
+		case LV_FLUCTUATE:
+			
+		default:
+			break;
+	}
+	return 0;
+}
 unsigned int BoxPokemon::getPersonalityValue() {
 	return personalityValue;
+}
+char BoxPokemon::isMale() {
+	unsigned char genderVal = personalityValue%256;
+	// Check if genderless
+	if (getBase()->getGenderRatio() == 255) {
+		return -1;
+	}
+	
+	// Return TRUE if male
+	return (genderVal > getBase()->getGenderRatio() );
+}
+/*
+Ability BoxPokemon::getAbility() {
+	
+}
+*/
+char BoxPokemon::getNature() {
+	return personalityValue%25;
+}
+char BoxPokemon::getShinyness() {
+	return 0;
+}
+char BoxPokemon::getCharacteristic() {
+	char start = personalityValue%6;
+	char highestStat = start;
+	int highestStatVal = get_stat(start);
+	for (char i=++start; i<6; i++) {
+		if (get_stat(i) > highestStatVal) {
+			highestStat = i;
+			highestStatVal = get_stat(i);
+		}
+	}
+	for (char i=0; i<start; i++) {
+		if (get_stat(i) > highestStatVal) {
+			highestStat = i;
+			highestStatVal = get_stat(i);
+		}
+	}
+	return highestStat;
 }
 
 std::array<LearnedMove, 4> BoxPokemon::getMoves() {
@@ -409,4 +479,14 @@ int BoxPokemon::removeMarking(unsigned char mark) {
 	// Otherwise, just remove the marking
 	markings -= mark;
 	return 0;
+}
+
+PartyPokemon::PartyPokemon()
+{
+	
+}
+PartyPokemon::PartyPokemon(BoxPokemon pokemon)
+	: box(&pokemon)
+{
+	//stats.at(0) = 
 }

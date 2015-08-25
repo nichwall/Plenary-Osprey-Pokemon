@@ -102,4 +102,39 @@
 #define CONTEST_CLEVER	4
 #define CONTEST_TOUGH	5
 
+// Level up Speed
+#define LV_ERRATIC		1
+#define LV_FAST			2
+#define LV_M_FAST		3
+#define LV_M_SLOW		4
+#define LV_SLOW			5
+#define LV_FLUCTUATE	6
+
+// Natures
+#define NAT_HARDY		0
+#define NAT_LONELY		1
+#define NAT_BRAVE		2
+#define NAT_ADAMANT		3
+#define NAT_NAUGHTY		4
+#define NAT_BOLD		5
+#define NAT_DOCILE		7
+#define NAT_RELAXED		8
+#define NAT_IMPISH		9
+#define NAT_LAX			10
+#define NAT_TIMID		11
+#define NAT_HASTY		12
+#define NAT_SERIOUS		13
+#define NAT_JOLLY		14
+#define NAT_NAIVE		15
+#define NAT_MODEST		16
+#define NAT_MILD		17
+#define NAT_QUIET		18
+#define NAT_BASHFUL		19
+#define NAT_RASH		20
+#define NAT_CALM		21
+#define NAT_GENTLE		22
+#define NAT_SASSY		23
+#define NAT_CAREFUL		24
+#define NAT_QUIRKY		25
+
 #endif
