@@ -167,9 +167,10 @@ unsigned char BoxPokemon::get_evs(unsigned int stat) {
 int BoxPokemon::get_stat(char stat) {
 	// Calculate HP stat
 	if ( stat == STAT_HP ) {
-		
+		return ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
 	}
-	return 0;
+	// Otherwise, use the right formula
+	return ( ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) ) * get_level() ) / 100 ) + 5 ) * getNatureEffect(stat,getNature());
 }
 unsigned int BoxPokemon::get_experience() {
 	return experience;
@@ -220,6 +221,96 @@ Ability BoxPokemon::getAbility() {
 */
 char BoxPokemon::getNature() {
 	return personalityValue%25;
+}
+natureEffectStructure BoxPokemon::getNatureEffect(char nature) {
+	char statRaised, statLowered;
+	// Switch to find the raised stats
+	switch (nature) {
+		case NAT_LONELY:
+		case NAT_BRAVE:
+		case NAT_ADAMANT:
+		case NAT_NAUGHTY:
+			statRaised = STAT_ATTACK;
+			break;
+		case NAT_BOLD:
+		case NAT_RELAXED:
+		case NAT_IMPISH:
+		case NAT_LAX:
+			statRaised = STAT_DEFENSE;
+			break;
+		case NAT_TIMID:
+		case NAT_HASTY:
+		case NAT_JOLLY:
+		case NAT_NAIVE:
+			statRaised = STAT_SPEED;
+			break;
+		case NAT_MODEST:
+		case NAT_MILD:
+		case NAT_QUIET:
+		case NAT_RASH:
+			statRaised = STAT_SP_ATTACK;
+			break;
+		case NAT_CALM:
+		case NAT_GENTLE:
+		case NAT_SASSY:
+		case NAT_CAREFUL:
+			statRaised = STAT_SP_DEFENSE;
+			break;
+		default:
+			statRaised = STAT_NAN;
+			break;
+	}
+	// Switch to find the lowered stat
+	switch (nature) {
+		case NAT_LONELY:
+		case NAT_HASTY:
+		case NAT_MILD:
+		case NAT_GENTLE:
+			statLowered = STAT_DEFENSE;
+			break;
+		case NAT_BRAVE:
+		case NAT_RELAXED:
+		case NAT_QUIET:
+		case NAT_SASSY:
+			statLowered = STAT_SPEED;
+			break;
+		case NAT_ADAMANT:
+		case NAT_IMPISH:
+		case NAT_JOLLY:
+		case NAT_CAREFUL:
+			statLowered = STAT_SP_ATTACK;
+			break;
+		case NAT_NAUGHTY:
+		case NAT_LAX:
+		case NAT_NAIVE:
+		case NAT_RASH:
+			statLowered = STAT_SP_DEFENSE;
+			break;
+		case NAT_BOLD:
+		case NAT_TIMID:
+		case NAT_MODEST:
+		case NAT_CALM:
+			statLowered = STAT_ATTACK;
+			break;
+		default:
+			statLowered = STAT_NAN;
+			break;
+	}
+	// Returning value
+	natureEffectStructure temp;
+	temp.raised = statRaised;
+	temp.lowered = statLowered;
+	return temp;
+}
+double BoxPokemon::getNatureEffect(char nature, char stat) {
+	// Figure out stat effects
+	natureEffectStructure affected = getNatureEffect(nature);
+	if (affected.lowered == stat) {
+		return 0.9;
+	} else if (affected.raised == stat) {
+		return 1.1;
+	}
+	return 1.0;
 }
 char BoxPokemon::getShinyness() {
 	return 0;

@@ -13,6 +13,10 @@ struct evolutionDataStructure {
 	uint16_t parameter;
 	uint16_t target;
 };
+struct natureEffectStructure {
+	char raised;
+	char lowered;
+};
 
 // Defines every Pokemon, but just what is required to define one
 class BasePokemon {
@@ -146,6 +150,8 @@ class BoxPokemon: public BasePokemon {
 		char isMale();
 		// Ability * getAbility();
 		char getNature();
+		natureEffectStructure getNatureEffect(char nature);
+		double getNatureEffect(char nature, char stat);
 		char getShinyness();
 		char getCharacteristic();
 		

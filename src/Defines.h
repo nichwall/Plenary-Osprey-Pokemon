@@ -50,6 +50,7 @@
 
 // Defines Stat numbers
 // Stat globals begin with "STAT_"
+#define STAT_NAN		8
 #define STAT_HP			0
 #define STAT_ATTACK		1
 #define STAT_DEFENSE	2
