@@ -138,4 +138,14 @@
 #define NAT_CAREFUL		24
 #define NAT_QUIRKY		25
 
+// Status Conditions (non-volatile)
+#define STNV_NAN		0
+#define STNV_SLEEP_1	1
+#define STNV_SLEEP_2	2
+#define STNV_SLEEP_3	3
+#define STNV_POISON		4
+#define STNV_BURN		5
+#define STNV_PARALYSIS	6
+#define STNV_FREEZE		7
+
 #endif

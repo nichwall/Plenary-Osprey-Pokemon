@@ -16,8 +16,8 @@ Install Insructions:
 ****************************
 Clone repository or download zip
 
-`cd src/
+`cd src/`
 
-make`
+`make`
 
 Once you've downloaded and compiled, run using `./pokemon_engine`

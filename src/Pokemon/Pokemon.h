@@ -143,7 +143,7 @@ class BoxPokemon: public BasePokemon {
 		unsigned char get_iv(unsigned int stat);
 		std::array<unsigned char, 6> get_evs();
 		unsigned char get_evs(unsigned int stat);
-		int get_stat(char stat);
+		uint16_t get_stat(char stat);
 		unsigned int get_experience();
 		unsigned int get_level();
 		unsigned int getPersonalityValue();
@@ -203,7 +203,7 @@ class PartyPokemon: public BoxPokemon {
 		unsigned char level;
 		std::array<uint16_t, 6> stats;
 		// Current HP
-		unsigned int currentHP;
+		int currentHP;
 		// Status condition
 		/*
 		 * In order to store sleep remaining, bits 0-2 are turns remaining
@@ -216,6 +216,20 @@ class PartyPokemon: public BoxPokemon {
 		// Constructors
 		PartyPokemon();
 		PartyPokemon(BoxPokemon box);
+		PartyPokemon(BoxPokemon box, unsigned char statCondition);
+		PartyPokemon(BoxPokemon box, int cHP);
+		PartyPokemon(BoxPokemon box, int cHP, unsigned char statCondition);
+		// Get the level
+		BoxPokemon * getBox();
+		unsigned char getLevel();
+		int getHP();
+		unsigned char getStatusCondition();
+		// Reload things
+		void reloadLevel();
+		void reloadStats();
+		int deltaHealth(int delta);
+		int updateStatusCondition();
+		void clearStatusCondition();
 };
 
 // Defines Pokemon in battle, extends party

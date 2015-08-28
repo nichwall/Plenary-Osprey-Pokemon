@@ -164,7 +164,7 @@ std::array<unsigned char, 6> BoxPokemon::get_evs() {
 unsigned char BoxPokemon::get_evs(unsigned int stat) {
 	return evs.at(stat);
 }
-int BoxPokemon::get_stat(char stat) {
+uint16_t BoxPokemon::get_stat(char stat) {
 	// Calculate HP stat
 	if ( stat == STAT_HP ) {
 		return ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
@@ -579,5 +579,65 @@ PartyPokemon::PartyPokemon()
 PartyPokemon::PartyPokemon(BoxPokemon pokemon)
 	: box(&pokemon)
 {
-	//stats.at(0) = 
+	unsigned char stat = STNV_NAN;
+	PartyPokemon(pokemon, stat);
+}
+PartyPokemon::PartyPokemon(BoxPokemon pokemon, unsigned char statCondition) {
+	PartyPokemon(pokemon, statCondition);
+}
+PartyPokemon::PartyPokemon(BoxPokemon pokemon, int cHP) {
+	PartyPokemon(pokemon, cHP, STNV_NAN);
+}
+PartyPokemon::PartyPokemon(BoxPokemon pokemon, int cHP, unsigned char statCondition)
+	: box(&pokemon),
+	  currentHP(cHP),
+	  statusCondition(statCondition)
+{
+	// Load stats
+	for (int i=0; i<6; i++) {
+		stats.at(i) = get_stat(i);
+	}
+	// Load the level. Note it is BoxPokemon, not PartyPokemon
+	level = getBox()->get_level();
+}
+// Accessors
+BoxPokemon * PartyPokemon::getBox() {
+	return box;
+}
+unsigned char PartyPokemon::getLevel() {
+	return level;
+}
+int PartyPokemon::getHP() {
+	return currentHP;
+}
+unsigned char PartyPokemon::getStatusCondition() {
+	return statusCondition;
+}
+// Modifiers/reloads
+void PartyPokemon::reloadLevel() {
+	level = getBox()->get_level();
+}
+void PartyPokemon::reloadStats() {
+	for (int i=0; i<6; i++) {
+		stats.at(i) = get_stat(i);
+	}
+}
+int PartyPokemon::deltaHealth(int delta) {
+	currentHP += delta;
+	return currentHP;
+}
+int PartyPokemon::updateStatusCondition() {
+	switch (statusCondition) {
+		case STNV_SLEEP_1:
+		case STNV_SLEEP_2:
+		case STNV_SLEEP_3:
+			statusCondition--;
+			break;
+		default:
+			break;
+	}
+	return statusCondition;
+}
+void PartyPokemon::clearStatusCondition() {
+	statusCondition = STNV_NAN;
 }
