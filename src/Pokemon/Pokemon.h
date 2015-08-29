@@ -105,6 +105,9 @@ class BoxPokemon: public BasePokemon {
 		BasePokemon * base;
 		// Nickname, if applicable
 		std::string nickname;
+		// Trainer data
+		int trainerID;
+		int secretTrainerID;
 		// IVs, egg, and ability number
 		unsigned int ivs;
 		// EVs gained
@@ -235,9 +238,13 @@ class PartyPokemon: public BoxPokemon {
 // Defines Pokemon in battle, extends party
 class BattlePokemon: public PartyPokemon {
 	private:
-		
+		PartyPokemon * party;
 	public:
-		
+		// Constructors
+		BattlePokemon();
+		BattlePokemon(PartyPokemon * pokemon);
+		// Accessors
+		PartyPokemon * getParty();
 };
 
 #endif

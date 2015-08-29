@@ -148,4 +148,22 @@
 #define STNV_PARALYSIS	6
 #define STNV_FREEZE		7
 
+// Weather conditions
+#define WEATHER_CLEAR			0
+#define WEATHER_INTENSE_SUN		1
+#define WEATHER_VERY_HARSH_SUN	2
+#define WEATHER_RAIN			3
+#define WEATHER_HEAVY_RAIN		4
+#define WEATHER_SANDSTORM		5
+#define WEATHER_HAIL			6
+#define WEATHER_DIAMOND_DUST	7
+#define WEATHER_SHADOWY_AURA	8
+#define WEATHER_FOG				9
+#define WEATHER_STRONG_WINDS	10
+
+// Battle end conditions
+#define BATTLE_PLAYER_NOWIN	0
+#define BATTLE_PLAYER_WIN	1
+#define BATTLE_PLAYER_LOSE	2
+
 #endif

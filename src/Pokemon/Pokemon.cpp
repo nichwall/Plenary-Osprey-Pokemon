@@ -641,3 +641,17 @@ int PartyPokemon::updateStatusCondition() {
 void PartyPokemon::clearStatusCondition() {
 	statusCondition = STNV_NAN;
 }
+
+BattlePokemon::BattlePokemon() {
+	
+}
+BattlePokemon::BattlePokemon(PartyPokemon * pokemon)
+	: party(pokemon)
+{
+	
+}
+// Accessors
+PartyPokemon * BattlePokemon::getParty() {
+	return party;
+}
+	
