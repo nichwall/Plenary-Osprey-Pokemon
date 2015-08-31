@@ -127,7 +127,7 @@ BoxPokemon::BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs
 					   unsigned int p_xp, unsigned int p_personalityValue, std::array<LearnedMove, 4> p_moves,
 					   uint16_t p_heldItem, unsigned char p_friendship, std::array<unsigned char, 6> p_contestStats,
 					   unsigned char p_pokerus, unsigned int origin, unsigned int p_ribbons, unsigned char p_markings)
-	: base(&pokemon),
+	: base(pokemon),
 	  nickname(nick),
 	  ivs(p_ivs),
 	  evs(p_evs),
@@ -145,9 +145,9 @@ BoxPokemon::BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs
 	
 }
 // Accessors
-BasePokemon * BoxPokemon::getBase() {
+/*BasePokemon * BoxPokemon::getBase() {
 	return base;
-}
+}*/
 std::string BoxPokemon::getNickname() {
 	return nickname;
 }
@@ -167,10 +167,11 @@ unsigned char BoxPokemon::get_evs(unsigned int stat) {
 uint16_t BoxPokemon::get_stat(char stat) {
 	// Calculate HP stat
 	if ( stat == STAT_HP ) {
-		return ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
+		//return ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
+		return ( ( ( get_iv(stat) + (2*getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
 	}
 	// Otherwise, use the right formula
-	return ( ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) ) * get_level() ) / 100 ) + 5 ) * getNatureEffect(stat,getNature());
+	return ( ( ( ( get_iv(stat) + (2*getBaseStats(stat)) + (get_evs(stat)/4) ) * get_level() ) / 100 ) + 5 ) * getNatureEffect(stat,getNature());
 }
 unsigned int BoxPokemon::get_experience() {
 	return experience;
@@ -179,7 +180,7 @@ unsigned int BoxPokemon::get_level() {
 	int tempLevel = 1;
 	unsigned int tempExp = 0;
 	
-	switch( getBase()->getGrowthRate() ) {
+	switch( getGrowthRate() ) {
 		case LV_ERRATIC:
 			
 		case LV_FAST:
@@ -207,12 +208,12 @@ unsigned int BoxPokemon::getPersonalityValue() {
 char BoxPokemon::isMale() {
 	unsigned char genderVal = personalityValue%256;
 	// Check if genderless
-	if (getBase()->getGenderRatio() == 255) {
+	if (getGenderRatio() == 255) {
 		return -1;
 	}
 	
 	// Return TRUE if male
-	return (genderVal > getBase()->getGenderRatio() );
+	return (genderVal > getGenderRatio() );
 }
 /*
 Ability BoxPokemon::getAbility() {
@@ -572,12 +573,15 @@ int BoxPokemon::removeMarking(unsigned char mark) {
 	return 0;
 }
 
+/***********************************************************************************************************************
+*	Party Pokemon																									   *
+************************************************************************************************************************/
 PartyPokemon::PartyPokemon()
 {
 	
 }
 PartyPokemon::PartyPokemon(BoxPokemon pokemon)
-	: box(&pokemon)
+	: box(pokemon)
 {
 	unsigned char stat = STNV_NAN;
 	PartyPokemon(pokemon, stat);
@@ -589,7 +593,7 @@ PartyPokemon::PartyPokemon(BoxPokemon pokemon, int cHP) {
 	PartyPokemon(pokemon, cHP, STNV_NAN);
 }
 PartyPokemon::PartyPokemon(BoxPokemon pokemon, int cHP, unsigned char statCondition)
-	: box(&pokemon),
+	: box(pokemon),
 	  currentHP(cHP),
 	  statusCondition(statCondition)
 {
@@ -598,12 +602,12 @@ PartyPokemon::PartyPokemon(BoxPokemon pokemon, int cHP, unsigned char statCondit
 		stats.at(i) = get_stat(i);
 	}
 	// Load the level. Note it is BoxPokemon, not PartyPokemon
-	level = getBox()->get_level();
+	level = get_level();
 }
 // Accessors
-BoxPokemon * PartyPokemon::getBox() {
+/*BoxPokemon * PartyPokemon::getBox() {
 	return box;
-}
+}*/
 unsigned char PartyPokemon::getLevel() {
 	return level;
 }
@@ -615,7 +619,7 @@ unsigned char PartyPokemon::getStatusCondition() {
 }
 // Modifiers/reloads
 void PartyPokemon::reloadLevel() {
-	level = getBox()->get_level();
+	level = get_level();
 }
 void PartyPokemon::reloadStats() {
 	for (int i=0; i<6; i++) {
@@ -642,16 +646,16 @@ void PartyPokemon::clearStatusCondition() {
 	statusCondition = STNV_NAN;
 }
 
+/***********************************************************************************************************************
+*	Battle Pokemon																									   *
+************************************************************************************************************************/
+
 BattlePokemon::BattlePokemon() {
 	
 }
-BattlePokemon::BattlePokemon(PartyPokemon * pokemon)
+BattlePokemon::BattlePokemon(PartyPokemon pokemon)
 	: party(pokemon)
 {
 	
 }
 // Accessors
-PartyPokemon * BattlePokemon::getParty() {
-	return party;
-}
-	

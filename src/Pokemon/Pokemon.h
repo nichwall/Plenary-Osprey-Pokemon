@@ -102,7 +102,7 @@ class BasePokemon {
 // Defines Pokemon that have been caught, extends base
 class BoxPokemon: public BasePokemon {
 	private:
-		BasePokemon * base;
+		BasePokemon base;
 		// Nickname, if applicable
 		std::string nickname;
 		// Trainer data
@@ -140,7 +140,7 @@ class BoxPokemon: public BasePokemon {
 				   std::array<unsigned char, 6> p_contestStats, unsigned char p_pokerus, unsigned int origin,
 				   unsigned int p_ribbons, unsigned char p_markings);
 		// Accessors
-		BasePokemon * getBase();
+		//BasePokemon * getBase();
 		virtual std::string getNickname();
 		virtual unsigned int get_ivs();
 		virtual unsigned char get_iv(unsigned int stat);
@@ -201,7 +201,7 @@ class BoxPokemon: public BasePokemon {
 // Defines Pokemon in the party, extends box
 class PartyPokemon: public BoxPokemon {
 	private:
-		BoxPokemon * box;
+		BoxPokemon box;
 		// Battle stat info
 		unsigned char level;
 		std::array<uint16_t, 6> stats;
@@ -223,7 +223,7 @@ class PartyPokemon: public BoxPokemon {
 		PartyPokemon(BoxPokemon box, int cHP);
 		PartyPokemon(BoxPokemon box, int cHP, unsigned char statCondition);
 		// Get the level
-		BoxPokemon * getBox();
+		//BoxPokemon * getBox();
 		virtual unsigned char getLevel();
 		virtual int getHP();
 		virtual unsigned char getStatusCondition();
@@ -238,13 +238,13 @@ class PartyPokemon: public BoxPokemon {
 // Defines Pokemon in battle, extends party
 class BattlePokemon: public PartyPokemon {
 	private:
-		PartyPokemon * party;
+		PartyPokemon party;
 	public:
 		// Constructors
 		BattlePokemon();
-		BattlePokemon(PartyPokemon * pokemon);
+		BattlePokemon(PartyPokemon pokemon);
 		// Accessors
-		PartyPokemon * getParty();
+		//PartyPokemon * getParty();
 };
 
 #endif
