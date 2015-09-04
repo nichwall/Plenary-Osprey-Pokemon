@@ -324,7 +324,15 @@ double BoxPokemon::getNatureEffect(char nature, char stat) {
 	return 1.0;
 }
 char BoxPokemon::getShinyness() {
-	return 0;
+	// Split the personality value
+	int highEnd = personalityValue/65536;
+	int lowEnd = personalityValue%65536;
+	
+	// Get the xor's 	^
+	int result = highEnd ^ lowEnd ^ trainerID ^ secretTrainerID;
+	
+	// Check if it's less than the threshold and return that
+	return result < 16;
 }
 char BoxPokemon::getCharacteristic() {
 	char start = personalityValue%6;
@@ -343,6 +351,105 @@ char BoxPokemon::getCharacteristic() {
 		}
 	}
 	return highestStat;
+}
+char BoxPokemon::getSize() {
+	// Get vals from personality value
+	int red  = (personalityValue/256) % 256;
+	int blue = personalityValue % 256;
+	
+	// Get stats
+	int atk		= get_stat(STAT_ATTACK)%16,
+		def		= get_stat(STAT_DEFENSE)%16,
+		spd		= get_stat(STAT_SPEED)%16,
+		hp		= get_stat(STAT_HP)%16,
+		sp_atk	= get_stat(STAT_SP_ATTACK)%16,
+		sp_def	= get_stat(STAT_SP_DEFENSE)%16;
+		
+	// First step
+	int s = ( ( (atk ^ def) * hp ) ^ blue ) * 256+ ( ( (sp_atk ^ sp_def) * spd ) ^ red);
+	int x,y,z;
+	// Lookup tables for the second steps equation!
+	switch (s) {
+		case 0 ... 9:
+			x = 290;
+			y = 1;
+			z = 0;
+			break;
+		case 10 ... 109:
+			x = 300;
+			y = 1;
+			z = 10;
+			break;
+		case 110 ... 309:
+			x = 400;
+			y = 2;
+			z = 110;
+			break;
+		case 310 ... 709:
+			x = 500;
+			y = 4;
+			z = 310;
+			break;
+		case 710 ... 2709:
+			x = 600;
+			y = 20;
+			z = 710;
+			break;
+		case 2710 ... 7709:
+			x = 700;
+			y = 50;
+			z = 2710;
+			break;
+		case 7710 ... 17709:
+			x = 800;
+			y = 100;
+			z = 7710;
+			break;
+		case 17710 ... 32709:
+			x = 900;
+			y = 150;
+			z = 17710;
+			break;
+		case 32710 ... 47709:
+			x = 1000;
+			y = 150;
+			z = 32710;
+			break;
+		case 47710 ... 57709:
+			x = 1100;
+			y = 100;
+			z = 47710;
+			break;
+		case 57710 ... 62709:
+			x = 1200;
+			y = 50;
+			z = 57710;
+			break;
+		case 62710 ... 64709:
+			x = 1300;
+			y = 20;
+			z = 62710;
+			break;
+		case 64710 ... 65209:
+			x = 1400;
+			y = 5;
+			z = 64710;
+			break;
+		case 65210 ... 65409:
+			x = 1500;
+			y = 2;
+			z = 65210;
+			break;
+		case 65410 ... 65535:
+			x = 1700;
+			y = 1;
+			z = 65510;
+			break;
+	}
+	
+	// Size in mm, add converter later
+	int size = (int)( (s-z) / y + x) * getHeight() / 10;
+	return size;
 }
 
 std::array<LearnedMove, 4> BoxPokemon::getMoves() {

@@ -149,6 +149,7 @@ class BoxPokemon: public BasePokemon {
 		virtual uint16_t get_stat(char stat);
 		virtual unsigned int get_experience();
 		virtual unsigned int get_level();
+		
 		virtual unsigned int getPersonalityValue();
 		virtual char isMale();
 		// Ability * getAbility();
@@ -157,6 +158,7 @@ class BoxPokemon: public BasePokemon {
 		virtual double getNatureEffect(char nature, char stat);
 		virtual char getShinyness();
 		virtual char getCharacteristic();
+		virtual char getSize();
 		
 		virtual std::array<LearnedMove, 4> getMoves();
 		virtual LearnedMove getMove(unsigned int moveIndex);
