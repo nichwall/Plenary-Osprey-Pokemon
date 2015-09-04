@@ -156,7 +156,18 @@ unsigned int BoxPokemon::get_ivs() {
 }
 unsigned char BoxPokemon::get_iv(unsigned int stat) {
 	// FINISH
-	return 0;
+	switch (stat) {
+		case IV_HP:
+		case IV_ATTACK:
+		case IV_DEFENSE:
+		case IV_SPEED:
+		case IV_SP_ATTACK:
+		case IV_SP_DEFENSE:
+			break;
+		default:
+			return 0;
+	}
+	return (ivs/stat) % 32;
 }
 std::array<unsigned char, 6> BoxPokemon::get_evs() {
 	return evs;
@@ -167,7 +178,6 @@ unsigned char BoxPokemon::get_evs(unsigned int stat) {
 uint16_t BoxPokemon::get_stat(char stat) {
 	// Calculate HP stat
 	if ( stat == STAT_HP ) {
-		//return ( ( ( get_iv(stat) + (2*getBase()->getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
 		return ( ( ( get_iv(stat) + (2*getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
 	}
 	// Otherwise, use the right formula
