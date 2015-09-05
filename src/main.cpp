@@ -7,9 +7,8 @@
 //#include "Bag.h"
 //#include "Item_GenIII.h;
 
-#include "Move/Move.h"
-#include "Type/Type.h"
 #include "Pokemon/Pokemon.h"
+#include "Trainer/Player.h"
 
 /* Get zoom level of the game.
  * Supported levels will be
