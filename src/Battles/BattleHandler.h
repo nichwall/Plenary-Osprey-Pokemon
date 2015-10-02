@@ -1,7 +1,6 @@
 /* Used to handle battles! */
 
-#ifndef BATTLES_BATTLEHANDLER_H_
-#define BATTLES_BATTLEHANDLER_H_
+#pragma once
 
 #include "../Pokemon/Pokemon.h"
 
@@ -44,5 +43,3 @@ class Battle {
 		int run();
 		int hasWon();
 };
-
-#endif

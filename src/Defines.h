@@ -1,7 +1,6 @@
 // Defining global defines for the engine
 
-#ifndef DEFINES_H_
-#define DEFINES_H_
+#pragma once
 
 // Includes
 #include <vector>
@@ -165,5 +164,3 @@
 #define BATTLE_PLAYER_NOWIN	0
 #define BATTLE_PLAYER_WIN	1
 #define BATTLE_PLAYER_LOSE	2
-
-#endif

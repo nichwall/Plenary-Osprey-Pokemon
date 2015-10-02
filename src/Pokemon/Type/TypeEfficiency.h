@@ -12,7 +12,7 @@
 #include <algorithm>    // std::sort
 #include <stdio.h>		// printf
 
-#include "../Language/Language.h"
+#include "../../Language/Language.h"
 
 // Variables
 extern int numberOfTypes;

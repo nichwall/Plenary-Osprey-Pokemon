@@ -3,8 +3,8 @@
 #ifndef MOVE_MOVE_METADATA_H_
 #define MOVE_MOVE_METADATA_H_
 
-#include "../Language/Language.h"
-#include "../Defines.h"
+#include "../../Language/Language.h"
+#include "../../Defines.h"
 
 #include "Move_Damage_Class.h"
 

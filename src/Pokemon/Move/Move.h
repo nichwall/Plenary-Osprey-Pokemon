@@ -7,7 +7,7 @@
 #define MOVE_MOVE_H_
 
 #include "Move_Metadata.h"
-#include "../Language/Language.h"
+#include "../../Language/Language.h"
 
 class BaseMove {
 	private:

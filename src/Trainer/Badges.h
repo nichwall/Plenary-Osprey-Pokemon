@@ -1,7 +1,6 @@
 /* Loads and defines badges from gyms or other locations if desired */
 
-#ifndef TRAINER_BADGES_H_
-#define TRAINER_BADGES_H_
+#pragma once
 
 #include "../Defines.h"
 
@@ -27,5 +26,3 @@ class Badge {
 		std::vector<int> getAllowedMoves();
 		bool isAllowedMove(int moveID);
 };
-
-#endif

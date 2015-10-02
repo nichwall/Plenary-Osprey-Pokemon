@@ -8,7 +8,7 @@
 #define TYPE_TYPE_H_
 
 #include "TypeEfficiency.h"
-#include "../Language/Language.h"
+#include "../../Language/Language.h"
 
 // Variables
 extern std::vector<std::string> typeNames;

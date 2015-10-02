@@ -4,8 +4,8 @@
 #define POKEMON_POKEMON_H_
 
 #include "../Language/Language.h"
-#include "../Type/Type.h"
-#include "../Move/Move.h"
+#include "Type/Type.h"
+#include "Move/Move.h"
 
 // Define the evolution data structure
 struct evolutionDataStructure {

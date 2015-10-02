@@ -1,10 +1,10 @@
 /* Player trainer data */
 
-#ifndef TRAINER_PLAYER_H_
-#define TRAINER_PLAYER_H_
+#pragma once
 
 #include "../Defines.h"
 #include "Badges.h"
+#include "../Pokemon/Pokemon.h"
 
 class Player {
 	private:
@@ -33,5 +33,3 @@ class Player {
 	public:
 		Player();
 };
-
-#endif
