@@ -3,7 +3,7 @@
 std::vector<std::string> typeNames;
 
 int loadTypes() {
-	return loadTypes("Type/type_names.csv");
+	return loadTypes("Resources/type_names.csv");
 }
 int loadTypes(std::string pathToFile) {
 	printf("Loading Pokemon and Move types....");

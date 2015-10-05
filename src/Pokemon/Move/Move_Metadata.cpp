@@ -77,7 +77,7 @@ char MoveMeta::getStatDelta(unsigned int stat) {
 }
 
 int loadMoveMetaAilments() {
-	return loadMoveMetaAilments("Move/move_meta_ailments.csv");
+	return loadMoveMetaAilments("Resources/move_meta_ailments.csv");
 }
 int loadMoveMetaAilments(std::string pathToFile) {
 	printf("Loading Move Meta ailments...");
@@ -119,7 +119,7 @@ int loadMoveMetaAilments(std::string pathToFile) {
 	return 0;
 }
 int loadMoveMetaCategories() {
-	return loadMoveMetaCategories("Move/move_meta_categories.csv");
+	return loadMoveMetaCategories("Resources/move_meta_categories.csv");
 }
 int loadMoveMetaCategories(std::string pathToFile) {
 	printf("Loading Move Meta categories...");
@@ -161,7 +161,7 @@ int loadMoveMetaCategories(std::string pathToFile) {
 	return 0;
 }
 int loadMoveMetaStatChanges() {
-	return loadMoveMetaStatChanges("Move/move_meta_stat_changes.csv");
+	return loadMoveMetaStatChanges("Resources/move_meta_stat_changes.csv");
 }
 int loadMoveMetaStatChanges(std::string pathToFile) {
 	printf("Loading Move Meta stat changes...");
@@ -204,7 +204,7 @@ int loadMoveMetaStatChanges(std::string pathToFile) {
 }
 
 int loadMoveMeta() {
-	return loadMoveMeta("Move/move_meta_ailments.csv","Move/move_meta_categories.csv","Move/move_meta_stat_changes.csv","Move/move_meta.csv");
+	return loadMoveMeta("Resources/move_meta_ailments.csv","Resources/move_meta_categories.csv","Resources/move_meta_stat_changes.csv","Resources/move_meta.csv");
 }
 int loadMoveMeta(std::string pathToAilments, std::string pathToCategories, std::string pathToStats, std::string pathToMeta) {
 	if (loadMoveMetaAilments(pathToAilments) != 0) {

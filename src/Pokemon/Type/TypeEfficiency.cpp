@@ -10,7 +10,7 @@ std::vector<std::string> typeEffectivenessMap;
 
 // Default configuration
 int loadTypeEffectivenessMap() {
-	return loadTypeEffectivenessMap("Type/type_effectiveness.csv");
+	return loadTypeEffectivenessMap("Resources/type_effectiveness.csv");
 }
 // Custom configuration
 int loadTypeEffectivenessMap(std::string pathToFile) {

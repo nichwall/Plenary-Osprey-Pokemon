@@ -3,7 +3,7 @@
 std::vector<std::string> damageClass;
 
 int load_Damage_Class() {
-	return load_Damage_Class("move_damage_classes.csv");
+	return load_Damage_Class("Resources/move_damage_classes.csv");
 }
 int load_Damage_Class(std::string pathToFile) {
 	printf("Loading Damage classes....");

@@ -131,7 +131,7 @@ void LearnedMove::usePPUp(int amount) {
 }
 		
 int loadMoves() {
-	return loadMoves("Move/moves.csv");
+	return loadMoves("Resources/moves.csv");
 }
 int loadMoves(std::string pathToFile) {
 	printf("Loading moves....");
@@ -172,7 +172,7 @@ int loadMoves(std::string pathToFile) {
 }
 
 int loadMoveNames() {
-	return loadMoveNames("Move/move_names.csv");
+	return loadMoveNames("Resources/move_names.csv");
 }
 int loadMoveNames(std::string pathToFile) {
 	printf("Loading move names....");
@@ -216,7 +216,7 @@ int loadMoveNames(std::string pathToFile) {
 }
 
 int constructBaseMoves() {
-	return constructBaseMoves("Move/moves.csv", "Move/move_names.csv");
+	return constructBaseMoves("Resources/moves.csv", "Resources/move_names.csv");
 }
 int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 	if ( loadMoves(pathToMoves)!=0 || loadMoveNames(pathToNames)!=0 ) {
