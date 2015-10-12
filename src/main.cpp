@@ -44,7 +44,7 @@ int itemEngine=1;
 // Bag background
 int main() {
 	sf::RenderWindow window(sf::VideoMode((int)800*zoomLevel,(int)600*zoomLevel),"Plenary-Osprey Pokemon: Bag v0.1");
-	//int currentPocket = 0;
+	int currentPocket = 0;
 	
 	setLanguage(9);
 	
@@ -57,15 +57,15 @@ int main() {
 	
 	while (1) {
 		/* Clear Screen */
-		//window.clear(sf::Color::Black);
+		window.clear(sf::Color::Black);
 		/* Draw the things */
-//		currentPocket = currentPocket++%8+1;
-//		window.draw(playerBag.getBagBackground(currentPocket));
-//		window.draw(playerBag.getBagIcon(currentPocket));
+		currentPocket = currentPocket++%8+1;
+		//window.draw(playerBag.getBagBackground(currentPocket));
+		//window.draw(playerBag.getBagIcon(currentPocket));
 		/* Display changes */
-		//window.display();
+		window.display();
 		usleep(100000);
-		//printf("Size of movesArray: %d\n",sizeof(movesInGame));
+		printf("Size of movesArray: %d\n",baseMoves.size());
 	}
 }
 
