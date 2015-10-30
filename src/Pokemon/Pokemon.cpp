@@ -41,78 +41,78 @@ BasePokemon::BasePokemon (std::string name, int regionNum, int nationalNum, std:
 }
 
 // Accessors
-std::string BasePokemon::getPokemonName() {
+inline std::string BasePokemon::getPokemonName() {
 	return pokemonName;
 }
-int BasePokemon::getRegionalPokedexNumber() {
+inline int BasePokemon::getRegionalPokedexNumber() {
 	return pokedexNumber;
 }
-int BasePokemon::getNationalPokedexNumber() {
+inline int BasePokemon::getNationalPokedexNumber() {
 	return nationalPokedexNumber;
 }
-std::string BasePokemon::getPokemonSpecies() {
+inline std::string BasePokemon::getPokemonSpecies() {
 	return species;
 }
-char BasePokemon::getFirstType() {
+inline char BasePokemon::getFirstType() {
 	return type1;
 }
-char BasePokemon::getSecondType() {
+inline char BasePokemon::getSecondType() {
 	return type2;
 }
-std::vector<evolutionDataStructure> BasePokemon::getEvolutions() {
+inline std::vector<evolutionDataStructure> BasePokemon::getEvolutions() {
 	return evolutions;
 }
-std::array<char, 6> BasePokemon::getEvYeild() {
+inline std::array<char, 6> BasePokemon::getEvYeild() {
 	return evYeild;
 }
-char BasePokemon::getEvYeild(int stat) {
+inline char BasePokemon::getEvYeild(int stat) {
 	return evYeild.at(stat);
 }
-unsigned int BasePokemon::getXpYeild() {
+inline unsigned int BasePokemon::getXpYeild() {
 	return experienceYield;
 }
-std::array<unsigned char, 6> BasePokemon::getBaseStats() {
+inline std::array<unsigned char, 6> BasePokemon::getBaseStats() {
 	return baseStats;
 }
-unsigned char BasePokemon::getBaseStats(int stat) {
+inline unsigned char BasePokemon::getBaseStats(int stat) {
 	return baseStats.at(stat);
 }
-char BasePokemon::getGrowthRate() {
+inline char BasePokemon::getGrowthRate() {
 	return levelUpEquation;
 }
-std::array<char, 2> BasePokemon::getEggGroups() {
+inline std::array<char, 2> BasePokemon::getEggGroups() {
 	std::array<char, 2> array = { eggGroup1 , eggGroup2 };
 	return array;
 }
-char BasePokemon::getFirstEggGroup() {
+inline char BasePokemon::getFirstEggGroup() {
 	return eggGroup1;
 }
-char BasePokemon::getSecondEggGroup() {
+inline char BasePokemon::getSecondEggGroup() {
 	return eggGroup2;
 }
-std::vector<learnMoveDataStruct> BasePokemon::getLearnableMoves() {
+inline std::vector<learnMoveDataStruct> BasePokemon::getLearnableMoves() {
 	return learnableMoves;
 }
 //int canLearn(BaseMove& move);
-unsigned char BasePokemon::getGenderRatio() {
+inline unsigned char BasePokemon::getGenderRatio() {
 	return genderRatio;
 }
-unsigned char BasePokemon::getBaseEggCycleCount() {
+inline unsigned char BasePokemon::getBaseEggCycleCount() {
 	return eggCycles;
 }
-unsigned char BasePokemon::getHeight() {
+inline unsigned char BasePokemon::getHeight() {
 	return heightAndWeight / 65536;
 }
-unsigned char BasePokemon::getWeight() {
+inline unsigned char BasePokemon::getWeight() {
 	return heightAndWeight % 65536;
 }
-unsigned char BasePokemon::getBodyStyle() {
+inline unsigned char BasePokemon::getBodyStyle() {
 	return bodyStyle;
 }
-unsigned char BasePokemon::getPokedexColor() {
+inline unsigned char BasePokemon::getPokedexColor() {
 	return pokedexColor;
 }
-unsigned char BasePokemon::getBaseFriendship() {
+inline unsigned char BasePokemon::getBaseFriendship() {
 	return baseFriendship;
 }
 
@@ -145,16 +145,16 @@ BoxPokemon::BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs
 	
 }
 // Accessors
-/*BasePokemon * BoxPokemon::getBase() {
+inline BasePokemon BoxPokemon::getBase() {
 	return base;
-}*/
-std::string BoxPokemon::getNickname() {
+}
+inline std::string BoxPokemon::getNickname() {
 	return nickname;
 }
-unsigned int BoxPokemon::get_ivs() {
+inline unsigned int BoxPokemon::get_ivs() {
 	return ivs;
 }
-unsigned char BoxPokemon::get_iv(unsigned int stat) {
+inline unsigned char BoxPokemon::get_iv(unsigned int stat) {
 	// FINISH
 	switch (stat) {
 		case IV_HP:
@@ -169,13 +169,13 @@ unsigned char BoxPokemon::get_iv(unsigned int stat) {
 	}
 	return (ivs/stat) % 32;
 }
-std::array<unsigned char, 6> BoxPokemon::get_evs() {
+inline std::array<unsigned char, 6> BoxPokemon::get_evs() {
 	return evs;
 }
-unsigned char BoxPokemon::get_evs(unsigned int stat) {
+inline unsigned char BoxPokemon::get_evs(unsigned int stat) {
 	return evs.at(stat);
 }
-uint16_t BoxPokemon::get_stat(char stat) {
+inline uint16_t BoxPokemon::get_stat(char stat) {
 	// Calculate HP stat
 	if ( stat == STAT_HP ) {
 		return ( ( ( get_iv(stat) + (2*getBaseStats(stat)) + (get_evs(stat)/4) + 100 ) * get_level() ) / 100 ) + 10;
@@ -183,7 +183,7 @@ uint16_t BoxPokemon::get_stat(char stat) {
 	// Otherwise, use the right formula
 	return ( ( ( ( get_iv(stat) + (2*getBaseStats(stat)) + (get_evs(stat)/4) ) * get_level() ) / 100 ) + 5 ) * getNatureEffect(stat,getNature());
 }
-unsigned int BoxPokemon::get_experience() {
+inline unsigned int BoxPokemon::get_experience() {
 	return experience;
 }
 unsigned int BoxPokemon::get_level() {
@@ -212,10 +212,10 @@ unsigned int BoxPokemon::get_level() {
 	}
 	return 0;
 }
-unsigned int BoxPokemon::getPersonalityValue() {
+inline unsigned int BoxPokemon::getPersonalityValue() {
 	return personalityValue;
 }
-char BoxPokemon::isMale() {
+inline char BoxPokemon::isMale() {
 	unsigned char genderVal = personalityValue%256;
 	// Check if genderless
 	if (getGenderRatio() == 255) {
@@ -225,15 +225,25 @@ char BoxPokemon::isMale() {
 	// Return TRUE if male
 	return (genderVal > getGenderRatio() );
 }
+inline char BoxPokemon::isFemale() {
+    unsigned char genderVal = personalityValue%256;
+    // Check if genderless
+    if (getGenderRatio() == 255) {
+        return -1;
+    }
+
+    // Return TRUE if female
+    return (genderVal <= getGenderRatio() );
+}
 /*
 Ability BoxPokemon::getAbility() {
 	
 }
 */
-char BoxPokemon::getNature() {
+inline char BoxPokemon::getNature() {
 	return personalityValue%25;
 }
-natureEffectStructure BoxPokemon::getNatureEffect(char nature) {
+inline natureEffectStructure BoxPokemon::getNatureEffect(char nature) {
 	char statRaised, statLowered;
 	// Switch to find the raised stats
 	switch (nature) {
@@ -313,7 +323,7 @@ natureEffectStructure BoxPokemon::getNatureEffect(char nature) {
 	temp.lowered = statLowered;
 	return temp;
 }
-double BoxPokemon::getNatureEffect(char nature, char stat) {
+inline double BoxPokemon::getNatureEffect(char nature, char stat) {
 	// Figure out stat effects
 	natureEffectStructure affected = getNatureEffect(nature);
 	if (affected.lowered == stat) {
@@ -323,7 +333,7 @@ double BoxPokemon::getNatureEffect(char nature, char stat) {
 	}
 	return 1.0;
 }
-char BoxPokemon::getShinyness() {
+inline char BoxPokemon::getShinyness() {
 	// Split the personality value
 	int highEnd = personalityValue/65536;
 	int lowEnd = personalityValue%65536;
@@ -452,44 +462,44 @@ char BoxPokemon::getSize() {
 	return size;
 }
 
-std::array<LearnedMove, 4> BoxPokemon::getMoves() {
+inline std::array<LearnedMove, 4> BoxPokemon::getMoves() {
 	return moves;
 }
-LearnedMove BoxPokemon::getMove(unsigned int moveIndex) {
+inline LearnedMove BoxPokemon::getMove(unsigned int moveIndex) {
 	return moves.at(moveIndex);
 }
-uint16_t BoxPokemon::getHeldItem() {
+inline uint16_t BoxPokemon::getHeldItem() {
 	return heldItem;
 }
-unsigned char BoxPokemon::getFriendship() {
+inline unsigned char BoxPokemon::getFriendship() {
 	return friendship;
 }
-std::array<unsigned char, 6> BoxPokemon::getContestStats() {
+inline std::array<unsigned char, 6> BoxPokemon::getContestStats() {
 	return contestStats;
 }
-unsigned char BoxPokemon::getPokerusStatus() {
+inline unsigned char BoxPokemon::getPokerusStatus() {
 	return pokerusStatus;
 }
-unsigned char BoxPokemon::getPokerusStrain() {
+inline unsigned char BoxPokemon::getPokerusStrain() {
 	return pokerusStatus/16%4;
 }
-unsigned char BoxPokemon::getPokerusRemaining() {
+inline unsigned char BoxPokemon::getPokerusRemaining() {
 	return pokerusStatus%16;
 }
-int BoxPokemon::isInfectedPokerus() {
+inline int BoxPokemon::isInfectedPokerus() {
 	return ( (pokerusStatus/16) != 0 );
 }
-int BoxPokemon::isCuredPokerus() {
+inline int BoxPokemon::isCuredPokerus() {
 	return ( isInfectedPokerus() && ( getPokerusRemaining() == 0) );
 }
-unsigned int BoxPokemon::getOrigin() {
+inline unsigned int BoxPokemon::getOrigin() {
 	return pokemonOrigin;
 }
 
-unsigned int BoxPokemon::getRibbons() {
+inline unsigned int BoxPokemon::getRibbons() {
 	return ribbons;
 }
-unsigned char BoxPokemon::getMarkings() {
+inline unsigned char BoxPokemon::getMarkings() {
 	return markings;
 }
 int BoxPokemon::hasMarking(unsigned int mark) {
@@ -507,11 +517,11 @@ int BoxPokemon::hasMarking(unsigned int mark) {
 	return ( markings >> mark ) & 1;
 }
 // Modifiers
-int BoxPokemon::setNickname(std::string nick) {
+inline int BoxPokemon::setNickname(std::string nick) {
 	nickname = nick;
 	return 0;
 }
-int BoxPokemon::shuffleIVs() {
+inline int BoxPokemon::shuffleIVs() {
 	return 0;
 }
 int BoxPokemon::deltaEV(unsigned char stat, char delta) {
@@ -536,15 +546,15 @@ int BoxPokemon::deltaEV(unsigned char stat, char delta) {
 	evs.at(stat) += delta;
 	return 0;
 }
-int BoxPokemon::setXP(unsigned int newXP) {
+inline int BoxPokemon::setXP(unsigned int newXP) {
 	experience = newXP;
 	return 0;
 }
-int BoxPokemon::deltaXP(int delta) {
+inline int BoxPokemon::deltaXP(int delta) {
 	experience += delta;
 	return 0;
 }
-int BoxPokemon::setMove(LearnedMove move, int index) {
+inline int BoxPokemon::setMove(LearnedMove move, int index) {
 	unsigned int temp = index;
 	if ( (index <0) || (temp >= moves.size()) ) {
 		return -2;
@@ -552,7 +562,7 @@ int BoxPokemon::setMove(LearnedMove move, int index) {
 	moves.at(index) = move;
 	return 0;
 }
-int BoxPokemon::deltaFriendship(char delta) {
+inline int BoxPokemon::deltaFriendship(char delta) {
 	if ( (delta+friendship) > 255 ) {
 		friendship = 255;
 		return 0;
@@ -564,17 +574,17 @@ int BoxPokemon::deltaFriendship(char delta) {
 	friendship += delta;
 	return 0;
 }
-uint16_t BoxPokemon::takeItem() {
+inline uint16_t BoxPokemon::takeItem() {
 	uint16_t item = heldItem;
 	heldItem = 0;
 	return item;
 }
-int BoxPokemon::giveItem(uint16_t item) {
+inline int BoxPokemon::giveItem(uint16_t item) {
 	// Destroys held item!
 	heldItem = item;
 	return 0;
 }
-uint16_t BoxPokemon::swapItem(uint16_t newItem) {
+inline uint16_t BoxPokemon::swapItem(uint16_t newItem) {
 	uint16_t item = heldItem;
 	heldItem = newItem;
 	return item;
@@ -625,27 +635,27 @@ int BoxPokemon::setContestStat(unsigned char statValue, int stat) {
 	contestStats.at(stat) = statValue;
 	return 0;
 }
-int BoxPokemon::pokerusAged() {
+inline int BoxPokemon::pokerusAged() {
 	pokerusStatus--;
 	return 0;
 }
-int BoxPokemon::setPokerusStrain(unsigned char strain) {
+inline int BoxPokemon::setPokerusStrain(unsigned char strain) {
 	pokerusStatus += strain;
 	return 0;
 }
-int BoxPokemon::setPokerusDuration(unsigned char age) {
+inline int BoxPokemon::setPokerusDuration(unsigned char age) {
 	pokerusStatus += age;
 	return 0;
 }
-int BoxPokemon::setPokerusStatus(unsigned char pokerus) {
+inline int BoxPokemon::setPokerusStatus(unsigned char pokerus) {
 	pokerusStatus = pokerus;
 	return 0;
 }
-int BoxPokemon::addRibbon(unsigned int ribbon) {
+inline int BoxPokemon::addRibbon(unsigned int ribbon) {
 	// Need to add, but ribbons aren't critical
 	return 0;
 }
-int BoxPokemon::removeRibbon(unsigned int ribbon) {
+inline int BoxPokemon::removeRibbon(unsigned int ribbon) {
 	// See above
 	return 0;
 }
@@ -725,25 +735,28 @@ PartyPokemon::PartyPokemon(BoxPokemon pokemon, int cHP, unsigned char statCondit
 /*BoxPokemon * PartyPokemon::getBox() {
 	return box;
 }*/
-unsigned char PartyPokemon::getLevel() {
+BoxPokemon PartyPokemon::getBox() {
+    return box;
+}
+inline unsigned char PartyPokemon::getLevel() {
 	return level;
 }
-int PartyPokemon::getHP() {
+inline int PartyPokemon::getHP() {
 	return currentHP;
 }
-unsigned char PartyPokemon::getStatusCondition() {
+inline unsigned char PartyPokemon::getStatusCondition() {
 	return statusCondition;
 }
 // Modifiers/reloads
-void PartyPokemon::reloadLevel() {
+inline void PartyPokemon::reloadLevel() {
 	level = get_level();
 }
-void PartyPokemon::reloadStats() {
+inline void PartyPokemon::reloadStats() {
 	for (int i=0; i<6; i++) {
 		stats.at(i) = get_stat(i);
 	}
 }
-int PartyPokemon::deltaHealth(int delta) {
+inline int PartyPokemon::deltaHealth(int delta) {
 	currentHP += delta;
 	return currentHP;
 }
@@ -759,7 +772,7 @@ int PartyPokemon::updateStatusCondition() {
 	}
 	return statusCondition;
 }
-void PartyPokemon::clearStatusCondition() {
+inline void PartyPokemon::clearStatusCondition() {
 	statusCondition = STNV_NAN;
 }
 
@@ -776,3 +789,6 @@ BattlePokemon::BattlePokemon(PartyPokemon pokemon)
 	
 }
 // Accessors
+inline PartyPokemon BattlePokemon::getPart() {
+    return party;
+}

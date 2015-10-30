@@ -140,7 +140,7 @@ class BoxPokemon: public BasePokemon {
 				   std::array<unsigned char, 6> p_contestStats, unsigned char p_pokerus, unsigned int origin,
 				   unsigned int p_ribbons, unsigned char p_markings);
 		// Accessors
-		//BasePokemon * getBase();
+		BasePokemon getBase();
 		virtual std::string getNickname();
 		virtual unsigned int get_ivs();
 		virtual unsigned char get_iv(unsigned int stat);
@@ -152,6 +152,7 @@ class BoxPokemon: public BasePokemon {
 		
 		virtual unsigned int getPersonalityValue();
 		virtual char isMale();
+        virtual char isFemale();
 		// Ability * getAbility();
 		virtual char getNature();
 		virtual natureEffectStructure getNatureEffect(char nature);
@@ -190,10 +191,12 @@ class BoxPokemon: public BasePokemon {
 		int deltaContestStat(char delta, int stat);
 		int setContestStats(std::array<unsigned char, 6> newStats);
 		int setContestStat(unsigned char statValue, int stat);
+        // Pokerus Data
 		int pokerusAged();
 		int setPokerusStrain(unsigned char strain);
 		int setPokerusDuration(unsigned char age);
 		int setPokerusStatus(unsigned char pokerus);
+
 		int addRibbon(unsigned int ribbon);
 		int removeRibbon(unsigned int ribbon);
 		int addMarking(unsigned char mark);
@@ -226,6 +229,7 @@ class PartyPokemon: public BoxPokemon {
 		PartyPokemon(BoxPokemon box, int cHP, unsigned char statCondition);
 		// Get the level
 		//BoxPokemon * getBox();
+        BoxPokemon getBox();
 		virtual unsigned char getLevel();
 		virtual int getHP();
 		virtual unsigned char getStatusCondition();
@@ -247,6 +251,7 @@ class BattlePokemon: public PartyPokemon {
 		BattlePokemon(PartyPokemon pokemon);
 		// Accessors
 		//PartyPokemon * getParty();
+        PartyPokemon getPart();
 };
 
 #endif
