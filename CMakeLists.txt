@@ -17,8 +17,9 @@ set (EXTRA_LIBS ${EXTRA_LIBS}
 		Language
 		Move
 #		Player
-		Trainer
 		Pokemon
+        Ribbon
+		Trainer
 		Type
 )
 
@@ -28,6 +29,7 @@ set (FOLDERS
 	src/Trainer/
 	src/Battles/
 	src/Language/
+    src/Ribbon/
 )
 
 add_subdirectory(src)

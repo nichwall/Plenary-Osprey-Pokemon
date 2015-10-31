@@ -6,6 +6,7 @@ set (FOLDERS
 	Language
 	Pokemon
 	Trainer
+    Ribbon
 )
 
 # All cxx to include in root dir
