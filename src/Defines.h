@@ -12,6 +12,7 @@
 #include <algorithm>    // std::sort
 #include <stdio.h>		// printf
 #include <array>
+#include <regex>
 
 // Egg Groups
 #define EGG_MONSTER		1
@@ -164,3 +165,10 @@
 #define BATTLE_PLAYER_NOWIN	0
 #define BATTLE_PLAYER_WIN	1
 #define BATTLE_PLAYER_LOSE	2
+
+
+// Strings are ints?
+inline bool is_number(std::string s) {
+    std::regex e ("^-?\\d+");
+    return (std::regex_match(s,e));
+};

@@ -11,6 +11,8 @@ struct Ribbon {
     std::string name;
 };
 
+extern std::vector<Ribbon> ribbons;
+
 int loadRibbons();
 int loadRibbons(std::string file);
 std::string getRibbon(int id);

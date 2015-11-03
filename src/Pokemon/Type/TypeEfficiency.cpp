@@ -48,8 +48,8 @@ int loadTypeEffectivenessMap(std::string pathToFile) {
 		// then oops. Fail and return
 		float typeCount = sqrt(tempEffects.size());
 		if (typeCount != floor(typeCount)) {
-			printf("ERROR(3): Invalid CSV file\n");
-			return 3;
+			printf("ERROR(2): Invalid CSV file\n");
+			return 2;
 		}
 		numberOfTypes = typeCount;
 		for (unsigned int i=0; i<tempEffects.size(); i++) {
