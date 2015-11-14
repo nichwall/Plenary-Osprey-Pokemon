@@ -166,6 +166,15 @@
 #define BATTLE_PLAYER_WIN	1
 #define BATTLE_PLAYER_LOSE	2
 
+// Item Categories
+#define ITEM_GENERAL 1
+#define ITEM_MEDICINE 2
+#define ITEM_TM_HM 4
+#define ITEM_BALL 8
+#define ITEM_KEY 16
+#define ITEM_HELD 32
+#define ITEM_BERRY 64
+
 
 // Strings are ints?
 inline bool is_number(std::string s) {

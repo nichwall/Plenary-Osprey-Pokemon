@@ -3,6 +3,7 @@ project (PokemonEngine CXX)
 
 set (FOLDERS
 	Battles
+    Items
 	Language
 	Pokemon
 	Trainer

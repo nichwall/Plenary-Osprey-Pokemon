@@ -14,6 +14,7 @@ set (EXTRA_LIBS ${EXTRA_LIBS}
 		sfml-window
 		sfml-graphics
 
+        Item
 		Language
 		Move
 #		Player
@@ -25,6 +26,7 @@ set (EXTRA_LIBS ${EXTRA_LIBS}
 
 set (FOLDERS 
 	src/
+    src/Items/
 	src/Pokemon/
 	src/Trainer/
 	src/Battles/
