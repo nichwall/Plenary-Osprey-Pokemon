@@ -2,15 +2,21 @@
 #define ITEM_ITEM_H_
 
 #include "../Defines.h"
+#include "../Pokemon/Pokemon.h"
 
 // Defining the bits for useability
 #define ITEM_WORLD  1
 #define ITEM_BATTLE 2
-#define ITEM_TRANSPORT  4
-#define ITEM_CAVE   8
-#define ITEM_INSIDE 16
-#define ITEM_BIKE   32
-#define ITEM_BASE   64
+#define ITEM_TRANSPORT  3
+#define ITEM_CAVE   4
+#define ITEM_INSIDE 5
+#define ITEM_BIKE   6
+#define ITEM_BASE   7
+
+#define ITEM_TRADEABLE 1
+#define ITEM_HOLDABLE 2
+#define ITEM_NATURAL 3
+#define ITEM_SELLABLE 4
 
 
 class Item {
@@ -24,18 +30,40 @@ class Item {
         // Sale
         int buyPrice;
 
-        bool isTradable; // Can it be traded
-        bool isNatural;  // Pokemon can use of own accord during battle?
-        bool isHoldable; // Pokemon can hold?
-        bool isSellable;
+        unsigned char locationUseableData; // Stores different locations where the item can be used. See ITEM defines
+        unsigned char itemAttributes;      // Stores bits about an items use, such as if it's natural, holdable, etc
 
-        bool useableInWorld;  // Ovenword stuff? Don't use things like X-Accuracy
-        bool useableInBattle; // In battle? No bikes!
-        bool useableOnTransport; // Trains, boats, etc. Might be cool to have planes
-        bool useableInCave;  // Useable underground
-        bool useableInside;  // In buildings?
-        bool useableOnBike;  // On bike or during surf?
-        bool useableInBase;  // Decorations? Won't be in bag, will be in special one
+        unsigned char flingDamage;
+        unsigned int flingEffect; // Need to get this structure figured out
+        unsigned char itemType;
+        
+        // Berry-specific attributes
+        unsigned char naturalGiftType;
+        unsigned char naturalGiftPower;
+        unsigned char color;
+        unsigned char hoursToGrow;
+        unsigned char minYield_maxYield;
+        unsigned char contestType;
+        unsigned char pokeblockRarity;
+        unsigned char firmness;
+        unsigned char size;
+        unsigned char taste[5];
+        unsigned char smoothness;
+
+        // Battle Effect Item-specific attributes
+        char statRaised_BattleEffect[8];
+        // Vitamin-specific attributes
+        char statRaised_Vitamin[8];
+
+        // Fossil-specific attributes
+        BasePokemon* revivedPokemon;
+
+        // Recovery-specific attributes
+        int deltaHP;
+        double deltaHP_percent;
+        unsigned char statusHealed;
+        char deltaFriendship;
+
     public:
         // Constructor
         Item();
@@ -49,6 +77,19 @@ class Item {
         int getMaxNumber();
         int getBuyPrice();
         int getSellPrice();
+        // LocationUseableData accessors
+        bool isUseableBattle();
+        bool isUseableOverworld();
+        bool isUseableCave();
+        bool isUseableInside();
+        bool isUseableBigTransport();
+        bool isUseableSmallTransport();
+        bool isUseableInBase();
+        // ItemAtributes accessors
+        bool isTradeable();
+        bool isHoldable();
+        bool isNatural();
+        bool isSellable();
 };
 
 #endif
