@@ -74,6 +74,7 @@ class Item {
         std::string getName();
         std::string getDescription();
         int getPocketNumber();
+        int getItemType();
         int getMaxNumber();
         int getBuyPrice();
         int getSellPrice();
@@ -90,6 +91,10 @@ class Item {
         bool isHoldable();
         bool isNatural();
         bool isSellable();
+        // Fling data accessors
+        unsigned char getFlingDamage();
+        unsigned char getFlingDamageType();
+
 };
 
 #endif
