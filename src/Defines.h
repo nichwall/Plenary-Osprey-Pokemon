@@ -175,6 +175,12 @@
 #define ITEM_HELD 32
 #define ITEM_BERRY 64
 
+// Berry Tastes
+#define BERRY_TASTE_SPICY   0
+#define BERRY_TASTE_DRY     1
+#define BERRY_TASTE_SWEET   2
+#define BERRY_TASTE_BITTER  3
+#define BERRY_TASTE_SOUR    4
 
 // Strings are ints?
 inline bool is_number(std::string s) {

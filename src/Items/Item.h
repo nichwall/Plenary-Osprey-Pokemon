@@ -47,7 +47,7 @@ class Item {
         unsigned char pokeblockRarity;
         unsigned char firmness;
         unsigned char size;
-        unsigned char taste[5];
+        unsigned char tastes[5];
         unsigned char smoothness;
 
         // Battle Effect Item-specific attributes
@@ -93,8 +93,22 @@ class Item {
         bool isSellable();
         // Fling data accessors
         unsigned char getFlingDamage();
-        unsigned char getFlingDamageType();
-
+        unsigned char getFlingEffect();
+        // Berry accessors
+        unsigned char getNaturalGiftType();
+        unsigned char getNaturalGiftPower();
+        unsigned char getBerryColor();
+        unsigned char getHoursToGrow();
+        unsigned char getMinYield();
+        unsigned char getMaxYield();
+        unsigned char getContestType();
+        unsigned char getPokeblockRarity();
+        unsigned char getBerryFirmness();
+        unsigned char getBerrySize();
+        //unsigned char[5] getBerryTaste();
+        unsigned char getBerryTaste(unsigned char taste);
+        unsigned char getBerryMaxTaste();
+        unsigned char getBerrySmoothness();
 };
 
 #endif
