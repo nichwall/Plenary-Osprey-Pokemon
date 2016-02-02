@@ -47,16 +47,16 @@ class Item {
         unsigned char pokeblockRarity;
         unsigned char firmness;
         unsigned char size;
-        unsigned char tastes[5];
         unsigned char smoothness;
+        std::vector<unsigned char> tastes;
 
         // Battle Effect Item-specific attributes
-        char statRaised_BattleEffect[8];
+        std::vector<char> statRaised_BattleEffect;
         // Vitamin-specific attributes
-        char statRaised_Vitamin[8];
+        std::vector<char> statRaised_Vitamin;
 
         // Fossil-specific attributes
-        BasePokemon* revivedPokemon;
+        int revivedPokemonNumber;
 
         // Recovery-specific attributes
         int deltaHP;
@@ -105,10 +105,23 @@ class Item {
         unsigned char getPokeblockRarity();
         unsigned char getBerryFirmness();
         unsigned char getBerrySize();
-        //unsigned char[5] getBerryTaste();
+        std::vector<unsigned char> getBerryTaste();
         unsigned char getBerryTaste(unsigned char taste);
         unsigned char getBerryMaxTaste();
         unsigned char getBerrySmoothness();
+        // Battle Effect Accessors
+        std::vector<char> getStatRaised_battleEffect();
+        char getStatRaised_battleEffect(int stat);
+        // Vitamin attributes accessors
+        std::vector<char> getStatRaised_vitamin();
+        char getStatRaised_vitamin(int stat);
+        // Fossil value accessors
+        int getPokemonRaised();
+        // HP and status affection accessors
+        int getDeltaHP();
+        int getDeltaHP_percent();
+        char getDeltaFriendship();
+        unsigned char getStatusHealed();
 };
 
 #endif

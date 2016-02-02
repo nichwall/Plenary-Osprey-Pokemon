@@ -167,13 +167,13 @@
 #define BATTLE_PLAYER_LOSE	2
 
 // Item Categories
-#define ITEM_GENERAL 1
-#define ITEM_MEDICINE 2
-#define ITEM_TM_HM 4
-#define ITEM_BALL 8
-#define ITEM_KEY 16
-#define ITEM_HELD 32
-#define ITEM_BERRY 64
+#define ITEM_GENERAL    1
+#define ITEM_MEDICINE   2
+#define ITEM_TM_HM      4
+#define ITEM_BALL       8
+#define ITEM_KEY        16
+#define ITEM_HELD       32
+#define ITEM_BERRY      64
 
 // Berry Tastes
 #define BERRY_TASTE_SPICY   0
@@ -184,6 +184,6 @@
 
 // Strings are ints?
 inline bool is_number(std::string s) {
-    std::regex e ("^-?\\d+");
+    std::regex e ("([\d.]+)");
     return (std::regex_match(s,e));
 };

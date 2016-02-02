@@ -3,7 +3,6 @@
 Item::Item() {
 }
 
-
 Item::~Item() {
 }
 int Item::getNumber()               { return number;        }
@@ -41,7 +40,7 @@ unsigned char Item::getContestType()      { return contestType;       }
 unsigned char Item::getPokeblockRarity()  { return pokeblockRarity;   }
 unsigned char Item::getBerryFirmness()    { return firmness;          }
 unsigned char Item::getBerrySize()        { return size;              }
-//unsigned char[5] Item::getBerryTaste()    {}
+std::vector<unsigned char> Item::getBerryTaste()          { return tastes;        }
 unsigned char Item::getBerryTaste(unsigned char taste)    { return tastes[taste]; }
 unsigned char Item::getBerryMaxTaste() {
     unsigned char max = 0; // Max value
@@ -55,3 +54,18 @@ unsigned char Item::getBerryMaxTaste() {
     return t;
 }
 unsigned char Item::getBerrySmoothness()  { return smoothness;        }
+
+std::vector<char> Item::getStatRaised_battleEffect() {  return statRaised_BattleEffect; }
+char Item::getStatRaised_battleEffect(int stat) {
+    for (int i=0; i<statRaised_BattleEffect.size(); i++) {
+        if (stat == i) return statRaised_BattleEffect[i];
+    }
+    return 0;
+}
+
+int Item::getPokemonRaised()     { return revivedPokemonNumber; }
+
+int Item::getDeltaHP()                { return deltaHP;         }
+int Item::getDeltaHP_percent()        { return deltaHP_percent; }
+char Item::getDeltaFriendship()       { return deltaFriendship; }
+unsigned char Item::getStatusHealed() { return statusHealed;    }
