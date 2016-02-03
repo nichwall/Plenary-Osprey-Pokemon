@@ -6,6 +6,7 @@ project (PokemonEngine CXX)
 include_directories ("${PROJECT_SOURCE_DIR}/../")
 
 SET (FOLDERS
+    Ability/
 	Type/
 	Move/
 )

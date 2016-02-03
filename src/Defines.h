@@ -184,6 +184,6 @@
 
 // Strings are ints?
 inline bool is_number(std::string s) {
-    std::regex e ("([\d.]+)");
+    std::regex e ("([\\d.]+)");
     return (std::regex_match(s,e));
 };
