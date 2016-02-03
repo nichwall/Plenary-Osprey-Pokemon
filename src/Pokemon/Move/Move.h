@@ -47,25 +47,25 @@ class BaseMove {
 				 int battlePriority, int battleTargets, int moveDamageClass, int moveEffectID, int moveEffectChance,
 				 int contest_TypeID, int contest_EffectID, int superContest_EffectID, MoveMeta metadata);*/
 		// Destructors
-		//~BaseMove();
+		~BaseMove();
 		// Accessors
-		std::string getMoveName();
-		std::string getMoveIdentifier();
-		int getMoveID();
-		int getMoveType1();
-		int getMoveType2();
-		int getMovePP();
-		int getMovePower();
-		int getMoveAccuracty();
-		int getMovePriority();
-		int getMoveTargets();
-		int getMoveDamageClass();
-		int getMoveEffectID();
-		int getMoveEffectChance();
-		int getMoveContestTypeID();
-		int getMoveContestEffectID();
-		int getMoveSuperContestEffectID();
-		MoveMeta getMoveMeta();
+		std::string getMoveName()         { return name; }
+		std::string getMoveIdentifier()   { return identifier; }
+		int getMoveID()                   { return id; }
+		int getMoveType1()                { return type1; }
+		int getMoveType2()                { return type2; }
+		int getMovePP()                   { return basePP; }
+		int getMovePower()                { return pow; }
+        int getMoveAccuracty()            { return acc; }
+		int getMovePriority()             { return priority; }
+		int getMoveTargets()              { return targets; }
+		int getMoveDamageClass()          { return damageClass; }
+		int getMoveEffectID()             { return effectID; }
+		int getMoveEffectChance()         { return effectChance; }
+		int getMoveContestTypeID()        { return contestTypeID; }
+		int getMoveContestEffectID()      { return contestEffectID; }
+		int getMoveSuperContestEffectID() { return superContestEffectID; }
+		MoveMeta getMoveMeta()            { return meta; }
 		// Modifiers
 		void setMoveName(std::string moveName);
 		

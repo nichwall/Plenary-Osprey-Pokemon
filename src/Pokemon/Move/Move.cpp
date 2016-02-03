@@ -48,59 +48,8 @@ BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, i
 {
 	
 }*/
-/*BaseMove::~BaseMove() {
+BaseMove::~BaseMove() {
 	
-}*/
-std::string BaseMove::getMoveName() {
-	return name;
-}
-std::string BaseMove::getMoveIdentifier() {
-	return identifier;
-}
-int BaseMove::getMoveID() {
-	return id;
-}
-int BaseMove::getMoveType1() {
-	return type1;
-}
-int BaseMove::getMoveType2() {
-	return type2;
-}
-int BaseMove::getMovePP() {
-	return basePP;
-}
-int BaseMove::getMovePower() {
-	return pow;
-}
-int BaseMove::getMoveAccuracty() {
-	return acc;
-}
-int BaseMove::getMovePriority() {
-	return priority;
-}
-int BaseMove::getMoveTargets() {
-	return targets;
-}
-int BaseMove::getMoveDamageClass() {
-	return damageClass;
-}
-int BaseMove::getMoveEffectID() {
-	return effectID;
-}
-int BaseMove::getMoveEffectChance() {
-	return effectChance;
-}
-int BaseMove::getMoveContestTypeID() {
-	return contestTypeID;
-}
-int BaseMove::getMoveContestEffectID() {
-	return contestEffectID;
-}
-int BaseMove::getMoveSuperContestEffectID() {
-	return superContestEffectID;
-}
-MoveMeta BaseMove::getMoveMeta() {
-	return meta;
 }
 void BaseMove::setMoveName(std::string moveName) {
 	name = moveName;
