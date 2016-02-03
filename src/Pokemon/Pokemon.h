@@ -68,31 +68,31 @@ class BasePokemon {
 					unsigned int p_HeightAndWeight, unsigned char p_bodyStyle, unsigned char p_pokedexColor, unsigned char p_baseFriend);
 		
 		// Accessors
-		virtual std::string getPokemonName();
-		virtual int getRegionalPokedexNumber();
-		virtual int getNationalPokedexNumber();
-		virtual std::string getPokemonSpecies();
-		virtual char getFirstType();
-		virtual char getSecondType();
-		virtual std::vector<evolutionDataStructure> getEvolutions();
-		virtual std::array<char, 6> getEvYeild();
-		virtual char getEvYeild(int stat);
-		virtual unsigned int getXpYeild();
-		virtual std::array<unsigned char, 6> getBaseStats();
-		virtual unsigned char getBaseStats(int stat);
-		virtual char getGrowthRate();
-		virtual std::array<char, 2> getEggGroups();
-		virtual char getFirstEggGroup();
-		virtual char getSecondEggGroup();
-		virtual std::vector<learnMoveDataStruct> getLearnableMoves();
+		std::string getPokemonName();
+		int getRegionalPokedexNumber();
+		int getNationalPokedexNumber();
+		std::string getPokemonSpecies();
+		char getFirstType();
+		char getSecondType();
+		std::vector<evolutionDataStructure> getEvolutions();
+		std::array<char, 6> getEvYeild();
+		char getEvYeild(int stat);
+		unsigned int getXpYeild();
+		std::array<unsigned char, 6> getBaseStats();
+		unsigned char getBaseStats(int stat);
+		char getGrowthRate();
+		std::array<char, 2> getEggGroups();
+		char getFirstEggGroup();
+		char getSecondEggGroup();
+		std::vector<learnMoveDataStruct> getLearnableMoves();
 		//int canLearn(BaseMove& move);
-		virtual unsigned char getGenderRatio();
-		virtual unsigned char getBaseEggCycleCount();
-		virtual unsigned char getHeight();
-		virtual unsigned char getWeight();
-		virtual unsigned char getBodyStyle();
-		virtual unsigned char getPokedexColor();
-		virtual unsigned char getBaseFriendship();
+		unsigned char getGenderRatio();
+		unsigned char getBaseEggCycleCount();
+		unsigned char getHeight();
+		unsigned char getWeight();
+		unsigned char getBodyStyle();
+		unsigned char getPokedexColor();
+		unsigned char getBaseFriendship();
 		//Abilites Accessor!
 		
 		// Modifiers
@@ -133,7 +133,7 @@ class BoxPokemon: public BasePokemon {
 		// Markings
 		unsigned char markings;
 	public:
-		// Constructors
+		// 
 		BoxPokemon();
 		BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs, std::array<unsigned char, 6> p_evs, unsigned int p_xp,
 				   unsigned int p_personalityValue, std::array<LearnedMove, 4> p_moves, uint16_t p_heldItem, unsigned char p_friendship,
@@ -141,41 +141,41 @@ class BoxPokemon: public BasePokemon {
 				   unsigned int p_ribbons, unsigned char p_markings);
 		// Accessors
 		BasePokemon getBase();
-		virtual std::string getNickname();
-		virtual unsigned int get_ivs();
-		virtual unsigned char get_iv(unsigned int stat);
-		virtual std::array<unsigned char, 6> get_evs();
-		virtual unsigned char get_evs(unsigned int stat);
-		virtual uint16_t get_stat(char stat);
-		virtual unsigned int get_experience();
-		virtual unsigned int get_level();
+		std::string getNickname();
+		unsigned int get_ivs();
+		unsigned char get_iv(unsigned int stat);
+		std::array<unsigned char, 6> get_evs();
+		unsigned char get_evs(unsigned int stat);
+		uint16_t get_stat(char stat);
+		unsigned int get_experience();
+		unsigned int get_level();
 		
-		virtual unsigned int getPersonalityValue();
-		virtual char isMale();
-        virtual char isFemale();
+		unsigned int getPersonalityValue();
+		char isMale();
+        char isFemale();
 		// Ability * getAbility();
-		virtual char getNature();
-		virtual natureEffectStructure getNatureEffect(char nature);
-		virtual double getNatureEffect(char nature, char stat);
-		virtual char getShinyness();
-		virtual char getCharacteristic();
-		virtual char getSize();
+		char getNature();
+		natureEffectStructure getNatureEffect(char nature);
+		double getNatureEffect(char nature, char stat);
+		char getShinyness();
+		char getCharacteristic();
+		char getSize();
 		
-		virtual std::array<LearnedMove, 4> getMoves();
-		virtual LearnedMove getMove(unsigned int moveIndex);
-		virtual uint16_t getHeldItem();
-		virtual unsigned char getFriendship();
-		virtual std::array<unsigned char, 6> getContestStats();
-		virtual unsigned char getPokerusStatus();
-		virtual unsigned char getPokerusStrain();
-		virtual unsigned char getPokerusRemaining();
-		virtual int isInfectedPokerus();
-		virtual int isCuredPokerus();
-		virtual unsigned int getOrigin();
+		std::array<LearnedMove, 4> getMoves();
+		LearnedMove getMove(unsigned int moveIndex);
+		uint16_t getHeldItem();
+		unsigned char getFriendship();
+		std::array<unsigned char, 6> getContestStats();
+		unsigned char getPokerusStatus();
+		unsigned char getPokerusStrain();
+		unsigned char getPokerusRemaining();
+		int isInfectedPokerus();
+		int isCuredPokerus();
+		unsigned int getOrigin();
 		
-		virtual unsigned int getRibbons();
-		virtual unsigned char getMarkings();
-		virtual int hasMarking(unsigned int mark);
+		unsigned int getRibbons();
+		unsigned char getMarkings();
+		int hasMarking(unsigned int mark);
 		// Modifiers
 		int setNickname(std::string nick);
 		int shuffleIVs();
@@ -230,15 +230,15 @@ class PartyPokemon: public BoxPokemon {
 		// Get the level
 		//BoxPokemon * getBox();
         BoxPokemon getBox();
-		virtual unsigned char getLevel();
-		virtual int getHP();
-		virtual unsigned char getStatusCondition();
+		unsigned char getLevel();
+		int getHP();
+		unsigned char getStatusCondition();
 		// Reload things
-		virtual void reloadLevel();
-		virtual void reloadStats();
-		virtual int deltaHealth(int delta);
-		virtual int updateStatusCondition();
-		virtual void clearStatusCondition();
+		void reloadLevel();
+		void reloadStats();
+		int deltaHealth(int delta);
+		int updateStatusCondition();
+		void clearStatusCondition();
 };
 
 // Defines Pokemon in battle, extends party

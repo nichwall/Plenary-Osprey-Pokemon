@@ -517,14 +517,15 @@ int BoxPokemon::hasMarking(unsigned int mark) {
 	return ( markings >> mark ) & 1;
 }
 // Modifiers
-inline int BoxPokemon::setNickname(std::string nick) {
+inline int BoxPokemon::setNickname(const std::string nick) {
 	nickname = nick;
 	return 0;
 }
+// Used to allow items that randomize IVs to work
 inline int BoxPokemon::shuffleIVs() {
 	return 0;
 }
-int BoxPokemon::deltaEV(unsigned char stat, char delta) {
+int BoxPokemon::deltaEV(const unsigned char stat, const char delta) {
 	switch (stat) {
 		case STAT_HP:
 		case STAT_ATTACK:
@@ -546,15 +547,15 @@ int BoxPokemon::deltaEV(unsigned char stat, char delta) {
 	evs.at(stat) += delta;
 	return 0;
 }
-inline int BoxPokemon::setXP(unsigned int newXP) {
+inline int BoxPokemon::setXP(const unsigned int newXP) {
 	experience = newXP;
 	return 0;
 }
-inline int BoxPokemon::deltaXP(int delta) {
+inline int BoxPokemon::deltaXP(const int delta) {
 	experience += delta;
 	return 0;
 }
-inline int BoxPokemon::setMove(LearnedMove move, int index) {
+inline int BoxPokemon::setMove(const LearnedMove move, const int index) {
 	unsigned int temp = index;
 	if ( (index <0) || (temp >= moves.size()) ) {
 		return -2;
@@ -562,7 +563,7 @@ inline int BoxPokemon::setMove(LearnedMove move, int index) {
 	moves.at(index) = move;
 	return 0;
 }
-inline int BoxPokemon::deltaFriendship(char delta) {
+inline int BoxPokemon::deltaFriendship(const char delta) {
 	if ( (delta+friendship) > 255 ) {
 		friendship = 255;
 		return 0;
@@ -579,12 +580,12 @@ inline uint16_t BoxPokemon::takeItem() {
 	heldItem = 0;
 	return item;
 }
-inline int BoxPokemon::giveItem(uint16_t item) {
+inline int BoxPokemon::giveItem(const uint16_t item) {
 	// Destroys held item!
 	heldItem = item;
 	return 0;
 }
-inline uint16_t BoxPokemon::swapItem(uint16_t newItem) {
+inline uint16_t BoxPokemon::swapItem(const uint16_t newItem) {
 	uint16_t item = heldItem;
 	heldItem = newItem;
 	return item;
@@ -602,7 +603,7 @@ int BoxPokemon::deltaContestStats(std::array<unsigned char, 6> deltas) {
 	}
 	return 0;
 }
-int BoxPokemon::deltaContestStat(char delta, int stat) {
+int BoxPokemon::deltaContestStat(const char delta, const int stat) {
 	unsigned int temp = stat;
 	if ( (stat < 0) || (temp >= contestStats.size()) ) {
 		return -2;
@@ -627,7 +628,7 @@ int BoxPokemon::setContestStats(std::array<unsigned char, 6> newStats) {
 	}
 	return 0;
 }
-int BoxPokemon::setContestStat(unsigned char statValue, int stat) {
+int BoxPokemon::setContestStat(const unsigned char statValue, const int stat) {
 	unsigned int temp = stat;
 	if ( (stat < 0) || (temp >= contestStats.size()) ) {
 		return -2;
@@ -639,27 +640,27 @@ inline int BoxPokemon::pokerusAged() {
 	pokerusStatus--;
 	return 0;
 }
-inline int BoxPokemon::setPokerusStrain(unsigned char strain) {
+inline int BoxPokemon::setPokerusStrain(const unsigned char strain) {
 	pokerusStatus += strain;
 	return 0;
 }
-inline int BoxPokemon::setPokerusDuration(unsigned char age) {
+inline int BoxPokemon::setPokerusDuration(const unsigned char age) {
 	pokerusStatus += age;
 	return 0;
 }
-inline int BoxPokemon::setPokerusStatus(unsigned char pokerus) {
+inline int BoxPokemon::setPokerusStatus(const unsigned char pokerus) {
 	pokerusStatus = pokerus;
 	return 0;
 }
-inline int BoxPokemon::addRibbon(unsigned int ribbon) {
+inline int BoxPokemon::addRibbon(const unsigned int ribbon) {
 	// Need to add, but ribbons aren't critical
 	return 0;
 }
-inline int BoxPokemon::removeRibbon(unsigned int ribbon) {
+inline int BoxPokemon::removeRibbon(const unsigned int ribbon) {
 	// See above
 	return 0;
 }
-int BoxPokemon::addMarking(unsigned char mark) {
+int BoxPokemon::addMarking(const unsigned char mark) {
 	switch (mark) {
 		case MARK_CIRCLE:
 		case MARK_TRIANGLE:
