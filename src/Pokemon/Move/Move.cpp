@@ -63,7 +63,7 @@ LearnedMove::LearnedMove(BaseMove baseMove) {
 	base = &baseMove;
 	ppUsed = 0;
 }
-BaseMove * LearnedMove::move() {
+BaseMove* LearnedMove::move() {
 	return base;
 }
 int LearnedMove::getMovePP() {

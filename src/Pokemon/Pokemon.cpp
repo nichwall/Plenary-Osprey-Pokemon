@@ -10,12 +10,12 @@
 BasePokemon::BasePokemon () {
 	
 }
-BasePokemon::BasePokemon (std::string name, int regionNum, int nationalNum, std::string p_species, char firstType, char secondType,
-						  std::vector<evolutionDataStructure> p_evolutions, std::array<char, 6> evYeilds, unsigned int xpYeild,
-						  std::array<unsigned char, 6> p_baseStats, char growthRate, char p_eggGroup1, char p_eggGroup2,
-						  std::vector<learnMoveDataStruct> p_learnableMoves, unsigned char p_genderRatio, unsigned char p_eggCycles,
-						  unsigned int p_HeightAndWeight, unsigned char p_bodyStyle, unsigned char p_pokedexColor,
-						  unsigned char p_baseFriend)
+BasePokemon::BasePokemon (std::string name, int16_t regionNum, int16_t nationalNum, std::string p_species, int8_t firstType, int8_t secondType,
+						  std::vector<evolutionDataStructure> p_evolutions, std::array<int8_t, 6> evYeilds, uint32_t xpYeild,
+						  std::array<uint8_t, 6> p_baseStats, int8_t growthRate, int8_t p_eggGroup1, int8_t p_eggGroup2,
+						  std::vector<learnMoveDataStruct> p_learnableMoves, uint8_t p_genderRatio, uint8_t p_eggCycles,
+						  uint32_t p_HeightAndWeight, uint8_t p_bodyStyle, uint8_t p_pokedexColor,
+						  uint8_t p_baseFriend)
 	: pokemonName(name),
 	  pokedexNumber(regionNum),
 	  nationalPokedexNumber(nationalNum),
@@ -39,81 +39,12 @@ BasePokemon::BasePokemon (std::string name, int regionNum, int nationalNum, std:
 {
 	
 }
+BasePokemon::~BasePokemon() {
 
-// Accessors
-inline std::string BasePokemon::getPokemonName() {
-	return pokemonName;
 }
-inline int BasePokemon::getRegionalPokedexNumber() {
-	return pokedexNumber;
-}
-inline int BasePokemon::getNationalPokedexNumber() {
-	return nationalPokedexNumber;
-}
-inline std::string BasePokemon::getPokemonSpecies() {
-	return species;
-}
-inline char BasePokemon::getFirstType() {
-	return type1;
-}
-inline char BasePokemon::getSecondType() {
-	return type2;
-}
-inline std::vector<evolutionDataStructure> BasePokemon::getEvolutions() {
-	return evolutions;
-}
-inline std::array<char, 6> BasePokemon::getEvYeild() {
-	return evYeild;
-}
-inline char BasePokemon::getEvYeild(int stat) {
-	return evYeild.at(stat);
-}
-inline unsigned int BasePokemon::getXpYeild() {
-	return experienceYield;
-}
-inline std::array<unsigned char, 6> BasePokemon::getBaseStats() {
-	return baseStats;
-}
-inline unsigned char BasePokemon::getBaseStats(int stat) {
-	return baseStats.at(stat);
-}
-inline char BasePokemon::getGrowthRate() {
-	return levelUpEquation;
-}
-inline std::array<char, 2> BasePokemon::getEggGroups() {
-	std::array<char, 2> array = { eggGroup1 , eggGroup2 };
-	return array;
-}
-inline char BasePokemon::getFirstEggGroup() {
-	return eggGroup1;
-}
-inline char BasePokemon::getSecondEggGroup() {
-	return eggGroup2;
-}
-inline std::vector<learnMoveDataStruct> BasePokemon::getLearnableMoves() {
-	return learnableMoves;
-}
-//int canLearn(BaseMove& move);
-inline unsigned char BasePokemon::getGenderRatio() {
-	return genderRatio;
-}
-inline unsigned char BasePokemon::getBaseEggCycleCount() {
-	return eggCycles;
-}
-inline unsigned char BasePokemon::getHeight() {
-	return heightAndWeight / 65536;
-}
-inline unsigned char BasePokemon::getWeight() {
-	return heightAndWeight % 65536;
-}
-inline unsigned char BasePokemon::getBodyStyle() {
-	return bodyStyle;
-}
-inline unsigned char BasePokemon::getPokedexColor() {
-	return pokedexColor;
-}
-inline unsigned char BasePokemon::getBaseFriendship() {
-	return baseFriendship;
+inline std::array<int8_t, 2> BasePokemon::getEggGroups() {
+    std::array<int8_t, 2> array = { eggGroup1, eggGroup2 };
+    return array;
 }
 
 /***********************************************************************************************************************
@@ -145,15 +76,6 @@ BoxPokemon::BoxPokemon(BasePokemon pokemon, std::string nick, unsigned int p_ivs
 	
 }
 // Accessors
-inline BasePokemon BoxPokemon::getBase() {
-	return base;
-}
-inline std::string BoxPokemon::getNickname() {
-	return nickname;
-}
-inline unsigned int BoxPokemon::get_ivs() {
-	return ivs;
-}
 inline unsigned char BoxPokemon::get_iv(unsigned int stat) {
 	// FINISH
 	switch (stat) {
@@ -169,12 +91,6 @@ inline unsigned char BoxPokemon::get_iv(unsigned int stat) {
 	}
 	return (ivs/stat) % 32;
 }
-inline std::array<unsigned char, 6> BoxPokemon::get_evs() {
-	return evs;
-}
-inline unsigned char BoxPokemon::get_evs(unsigned int stat) {
-	return evs.at(stat);
-}
 inline uint16_t BoxPokemon::get_stat(char stat) {
 	// Calculate HP stat
 	if ( stat == STAT_HP ) {
@@ -183,10 +99,7 @@ inline uint16_t BoxPokemon::get_stat(char stat) {
 	// Otherwise, use the right formula
 	return ( ( ( ( get_iv(stat) + (2*getBaseStats(stat)) + (get_evs(stat)/4) ) * get_level() ) / 100 ) + 5 ) * getNatureEffect(stat,getNature());
 }
-inline unsigned int BoxPokemon::get_experience() {
-	return experience;
-}
-unsigned int BoxPokemon::get_level() {
+uint32_t BoxPokemon::get_level() {
 	int tempLevel = 1;
 	unsigned int tempExp = 0;
 	
@@ -212,37 +125,21 @@ unsigned int BoxPokemon::get_level() {
 	}
 	return 0;
 }
-inline unsigned int BoxPokemon::getPersonalityValue() {
-	return personalityValue;
-}
 inline char BoxPokemon::isMale() {
 	unsigned char genderVal = personalityValue%256;
-	// Check if genderless
-	if (getGenderRatio() == 255) {
-		return -1;
-	}
-	
-	// Return TRUE if male
-	return (genderVal > getGenderRatio() );
+    // Returns -1 if genderless, TRUE if male
+    return (getGenderRatio() == 255) ? -1 : genderVal > getGenderRatio();
 }
 inline char BoxPokemon::isFemale() {
     unsigned char genderVal = personalityValue%256;
-    // Check if genderless
-    if (getGenderRatio() == 255) {
-        return -1;
-    }
-
-    // Return TRUE if female
-    return (genderVal <= getGenderRatio() );
+    // Returns -1 if genderless, TRUE if female
+    return (getGenderRatio() == 255) ? -1 : genderVal <= getGenderRatio();
 }
 /*
 Ability BoxPokemon::getAbility() {
 	
 }
 */
-inline char BoxPokemon::getNature() {
-	return personalityValue%25;
-}
 inline natureEffectStructure BoxPokemon::getNatureEffect(char nature) {
 	char statRaised, statLowered;
 	// Switch to find the raised stats
@@ -462,21 +359,6 @@ char BoxPokemon::getSize() {
 	return size;
 }
 
-inline std::array<LearnedMove, 4> BoxPokemon::getMoves() {
-	return moves;
-}
-inline LearnedMove BoxPokemon::getMove(unsigned int moveIndex) {
-	return moves.at(moveIndex);
-}
-inline uint16_t BoxPokemon::getHeldItem() {
-	return heldItem;
-}
-inline unsigned char BoxPokemon::getFriendship() {
-	return friendship;
-}
-inline std::array<unsigned char, 6> BoxPokemon::getContestStats() {
-	return contestStats;
-}
 inline unsigned char BoxPokemon::getPokerusStatus() {
 	return pokerusStatus;
 }
@@ -492,16 +374,7 @@ inline int BoxPokemon::isInfectedPokerus() {
 inline int BoxPokemon::isCuredPokerus() {
 	return ( isInfectedPokerus() && ( getPokerusRemaining() == 0) );
 }
-inline unsigned int BoxPokemon::getOrigin() {
-	return pokemonOrigin;
-}
 
-inline unsigned int BoxPokemon::getRibbons() {
-	return ribbons;
-}
-inline unsigned char BoxPokemon::getMarkings() {
-	return markings;
-}
 int BoxPokemon::hasMarking(unsigned int mark) {
 	switch (mark) {
 		case MARK_CIRCLE:

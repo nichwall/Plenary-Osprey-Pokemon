@@ -23,76 +23,77 @@ class BasePokemon {
 	private:
 		// Pokemon name
 		std::string pokemonName;
-		int pokedexNumber;
-		int nationalPokedexNumber;
+		int16_t pokedexNumber;
+		int16_t nationalPokedexNumber;
 		// Species
 		std::string species;
 		// Types of the Pokemon
-		char type1;
-		char type2;
+		int8_t type1;
+		int8_t type2;
 		// Evolution structs
 		std::vector<evolutionDataStructure> evolutions;
 		// EV Yeild
-		std::array<char, 6> evYeild;
-		unsigned int experienceYield;
+		std::array<int8_t, 6> evYeild;
+		uint32_t experienceYield;
 		// Base stats
-		std::array<unsigned char, 6> baseStats;
+		std::array<uint8_t, 6> baseStats;
 		// Level up rate
-		char levelUpEquation;
+		int8_t levelUpEquation;
 		// Egg Group
-		char eggGroup1;
-		char eggGroup2;
+		int8_t eggGroup1;
+		int8_t eggGroup2;
 		// Move structs
 		std::vector<learnMoveDataStruct> learnableMoves;
 		// Gender ratio
-		unsigned char genderRatio;
+		uint8_t genderRatio;
 		// Hatch time/Egg cycles
-		unsigned char eggCycles;
+		uint8_t eggCycles;
 		// Height and Weight
-		unsigned int heightAndWeight;
+		uint8_t heightAndWeight;
 		// Body Style
-		unsigned char bodyStyle;
+		uint8_t bodyStyle;
 		// Pokedex Color
-		unsigned char pokedexColor;
+		uint8_t pokedexColor;
 		// Base Friendship
-		unsigned char baseFriendship;
+		uint8_t baseFriendship;
 		// Abilities Structs
 		
 	public:
 		// Constructors
 		BasePokemon();
-		BasePokemon(std::string name, int regionNum, int nationalNum, std::string p_species, char firstType, char secondType,
-					std::vector<evolutionDataStructure> p_evolutions, std::array<char, 6> evYeilds, unsigned int xpYeild,
-					std::array<unsigned char, 6> p_baseStats, char growthRate, char p_eggGroup1, char p_eggGroup2,
-					std::vector<learnMoveDataStruct> p_learnableMoves, unsigned char p_genderRatio, unsigned char p_eggCycles,
-					unsigned int p_HeightAndWeight, unsigned char p_bodyStyle, unsigned char p_pokedexColor, unsigned char p_baseFriend);
-		
+		BasePokemon(std::string name, int16_t regionNum, int16_t nationalNum, std::string p_species, int8_t firstType, int8_t secondType,
+					std::vector<evolutionDataStructure> p_evolutions, std::array<int8_t, 6> evYeilds, uint32_t xpYeild,
+					std::array<uint8_t, 6> p_baseStats, int8_t growthRate, int8_t p_eggGroup1, int8_t p_eggGroup2,
+					std::vector<learnMoveDataStruct> p_learnableMoves, uint8_t p_genderRatio, uint8_t p_eggCycles,
+					uint32_t p_HeightAndWeight, uint8_t p_bodyStyle, uint8_t p_pokedexColor, uint8_t p_baseFriend);
+		~BasePokemon();
+
 		// Accessors
-		std::string getPokemonName();
-		int getRegionalPokedexNumber();
-		int getNationalPokedexNumber();
-		std::string getPokemonSpecies();
-		char getFirstType();
-		char getSecondType();
-		std::vector<evolutionDataStructure> getEvolutions();
-		std::array<char, 6> getEvYeild();
-		char getEvYeild(int stat);
-		unsigned int getXpYeild();
-		std::array<unsigned char, 6> getBaseStats();
-		unsigned char getBaseStats(int stat);
-		char getGrowthRate();
-		std::array<char, 2> getEggGroups();
-		char getFirstEggGroup();
-		char getSecondEggGroup();
-		std::vector<learnMoveDataStruct> getLearnableMoves();
+		inline std::string getPokemonName()        { return pokemonName; }
+		inline int16_t getRegionalPokedexNumber()  { return pokedexNumber; }
+		inline int16_t getNationalPokedexNumber()  { return nationalPokedexNumber; }
+		inline std::string getPokemonSpecies()     { return species; }
+		inline int8_t getFirstType()       { return type1; }
+		inline int8_t getSecondType()      { return type2; }
+		inline std::vector<evolutionDataStructure> getEvolutions() { return evolutions; }
+		inline std::array<int8_t, 6> getEvYeild()    { return evYeild; }
+		inline int8_t getEvYeild(int stat)           { return evYeild[stat]; }
+		inline uint32_t getXpYeild()                 { return experienceYield; }
+		inline std::array<uint8_t, 6> getBaseStats() { return baseStats; }
+		inline uint8_t getBaseStats(int stat)        { return baseStats[stat]; }
+		inline int8_t getGrowthRate()                { return levelUpEquation; }
+		inline std::array<int8_t, 2> getEggGroups();
+		inline int8_t getFirstEggGroup()   { return eggGroup1; }
+		inline int8_t getSecondEggGroup()  { return eggGroup2; }
+		inline std::vector<learnMoveDataStruct> getLearnableMoves() { return learnableMoves; }
 		//int canLearn(BaseMove& move);
-		unsigned char getGenderRatio();
-		unsigned char getBaseEggCycleCount();
-		unsigned char getHeight();
-		unsigned char getWeight();
-		unsigned char getBodyStyle();
-		unsigned char getPokedexColor();
-		unsigned char getBaseFriendship();
+		inline uint8_t getGenderRatio()        { return genderRatio; }
+		inline uint8_t getBaseEggCycleCount()  { return eggCycles;   }
+		inline uint8_t getHeight()     { return heightAndWeight / 65536; }
+		inline uint8_t getWeight()     { return heightAndWeight % 65536; }
+		inline uint8_t getBodyStyle()  { return bodyStyle; }
+		inline uint8_t getPokedexColor()           { return pokedexColor; }
+		inline uint8_t getBaseFriendship()   { return baseFriendship; }
 		//Abilites Accessor!
 		
 		// Modifiers
@@ -106,32 +107,32 @@ class BoxPokemon: public BasePokemon {
 		// Nickname, if applicable
 		std::string nickname;
 		// Trainer data
-		int trainerID;
-		int secretTrainerID;
+		int32_t trainerID;
+		int32_t secretTrainerID;
 		// IVs, egg, and ability number
-		unsigned int ivs;
+		uint32_t ivs;
 		// EVs gained
-		std::array<unsigned char, 6> evs;
+		std::array<uint8_t, 6> evs;
 		// Experience
-		unsigned int experience;
+		uint32_t experience;
 		// Personality Value
-		unsigned int personalityValue;
+		uint32_t personalityValue;
 		// Moves
 		std::array<LearnedMove, 4> moves;
 		// Held item
 		uint16_t heldItem;
 		// Friendship, or remaining egg cycles for egg
-		unsigned char friendship;
+		uint8_t friendship;
 		// Contest stats
 		std::array<unsigned char, 6> contestStats;
 		// Pokerus
-		unsigned char pokerusStatus;
+		uint8_t pokerusStatus;
 		// Pokemon origin
-		unsigned int pokemonOrigin;
+		uint32_t pokemonOrigin;
 		// Ribbons
-		unsigned int ribbons;
+		uint32_t ribbons;
 		// Markings
-		unsigned char markings;
+		uint8_t markings;
 	public:
 		// 
 		BoxPokemon();
@@ -140,41 +141,41 @@ class BoxPokemon: public BasePokemon {
 				   std::array<unsigned char, 6> p_contestStats, unsigned char p_pokerus, unsigned int origin,
 				   unsigned int p_ribbons, unsigned char p_markings);
 		// Accessors
-		BasePokemon getBase();
-		std::string getNickname();
-		unsigned int get_ivs();
-		unsigned char get_iv(unsigned int stat);
-		std::array<unsigned char, 6> get_evs();
-		unsigned char get_evs(unsigned int stat);
+		BasePokemon getBase()       { return base; }
+		std::string getNickname()   { return nickname; }
+		uint32_t get_ivs()          { return ivs; }
+		uint8_t get_iv(unsigned int stat);
+		std::array<uint8_t, 6> get_evs()   { return evs; }
+		uint8_t get_evs(unsigned int stat) { return evs[stat]; }
 		uint16_t get_stat(char stat);
-		unsigned int get_experience();
-		unsigned int get_level();
+		uint32_t get_experience() { return experience; }
+		uint32_t get_level();
 		
-		unsigned int getPersonalityValue();
+		uint32_t getPersonalityValue() { return personalityValue; }
 		char isMale();
         char isFemale();
 		// Ability * getAbility();
-		char getNature();
+		char getNature() { return personalityValue%25; }
 		natureEffectStructure getNatureEffect(char nature);
 		double getNatureEffect(char nature, char stat);
 		char getShinyness();
 		char getCharacteristic();
 		char getSize();
 		
-		std::array<LearnedMove, 4> getMoves();
-		LearnedMove getMove(unsigned int moveIndex);
-		uint16_t getHeldItem();
-		unsigned char getFriendship();
-		std::array<unsigned char, 6> getContestStats();
+		std::array<LearnedMove, 4> getMoves()   { return moves; }
+		LearnedMove getMove(unsigned int moveIndex) { return moves[moveIndex]; }
+		uint16_t getHeldItem()          { return heldItem; }
+		unsigned char getFriendship()   { return friendship; }
+		std::array<unsigned char, 6> getContestStats()  { return contestStats; }
 		unsigned char getPokerusStatus();
 		unsigned char getPokerusStrain();
 		unsigned char getPokerusRemaining();
 		int isInfectedPokerus();
 		int isCuredPokerus();
-		unsigned int getOrigin();
+		unsigned int getOrigin()    { return pokemonOrigin; }
 		
-		unsigned int getRibbons();
-		unsigned char getMarkings();
+		unsigned int getRibbons()   { return ribbons; }
+		unsigned char getMarkings() { return markings; }
 		int hasMarking(unsigned int mark);
 		// Modifiers
 		int setNickname(std::string nick);

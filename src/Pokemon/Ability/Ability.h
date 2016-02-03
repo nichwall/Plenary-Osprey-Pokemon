@@ -36,6 +36,8 @@ class Ability {
         inline unsigned char getTriggerTime()      { return m_triggerTime;     }
         inline unsigned char getTargetMechanic()   { return m_targetMechanic;  }
 
+        // Modifiers
+        // None included
 };
 
 #endif

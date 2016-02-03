@@ -31,6 +31,9 @@
 Engine/
 PlenaryOspreyPokemonEngine
 
+# Valgrind testing
+massif*
+
 # CMake Stuffs
 CMakeFiles/
 cmake_install.cmake

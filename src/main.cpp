@@ -55,7 +55,7 @@ int main() {
 	
 	//LearnedMove learned (baseMoves.at(47));
 	
-	while (1) {
+	while (window.isOpen()) {
 		/* Clear Screen */
 		window.clear(sf::Color::Black);
 		/* Draw the things */
@@ -66,6 +66,13 @@ int main() {
 		window.display();
 		usleep(100000);
 		printf("Size of movesArray: %d\n",baseMoves.size());
+
+        // Getting keypress
+        sf::Event event;
+        if (window.pollEvent(event)) {
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+                window.close();
+        }
 	}
 }
 
