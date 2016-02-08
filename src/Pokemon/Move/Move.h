@@ -49,25 +49,25 @@ class BaseMove {
 		// Destructors
 		~BaseMove();
 		// Accessors
-		std::string getMoveName()         { return name; }
-		std::string getMoveIdentifier()   { return identifier; }
-		int getMoveID()                   { return id; }
-		int getMoveType1()                { return type1; }
-		int getMoveType2()                { return type2; }
-		int getMovePP()                   { return basePP; }
-		int getMovePower()                { return pow; }
-        int getMoveAccuracty()            { return acc; }
-		int getMovePriority()             { return priority; }
-		int getMoveTargets()              { return targets; }
-		int getMoveDamageClass()          { return damageClass; }
-		int getMoveEffectID()             { return effectID; }
-		int getMoveEffectChance()         { return effectChance; }
-		int getMoveContestTypeID()        { return contestTypeID; }
-		int getMoveContestEffectID()      { return contestEffectID; }
-		int getMoveSuperContestEffectID() { return superContestEffectID; }
-		MoveMeta getMoveMeta()            { return meta; }
+		inline std::string getMoveName()         { return name; }
+		inline std::string getMoveIdentifier()   { return identifier; }
+		inline int getMoveID()                   { return id; }
+		inline int getMoveType1()                { return type1; }
+		inline int getMoveType2()                { return type2; }
+		inline int getMovePP()                   { return basePP; }
+		inline int getMovePower()                { return pow; }
+        inline int getMoveAccuracty()            { return acc; }
+		inline int getMovePriority()             { return priority; }
+		inline int getMoveTargets()              { return targets; }
+		inline int getMoveDamageClass()          { return damageClass; }
+		inline int getMoveEffectID()             { return effectID; }
+		inline int getMoveEffectChance()         { return effectChance; }
+		inline int getMoveContestTypeID()        { return contestTypeID; }
+		inline int getMoveContestEffectID()      { return contestEffectID; }
+		inline int getMoveSuperContestEffectID() { return superContestEffectID; }
+		inline MoveMeta getMoveMeta()            { return meta; }
 		// Modifiers
-		void setMoveName(std::string moveName);
+		inline void setMoveName(std::string moveName) { this->name = moveName; }
 		
 };
 
@@ -80,8 +80,8 @@ class LearnedMove {
 		LearnedMove ();
 		LearnedMove (BaseMove baseMove);
 		// Accessor
-		BaseMove * move();
-		int getMovePP();
+		inline BaseMove * move() { return base; }
+		inline int getMovePP()   { return base->getMovePP() * (5+ppUsed) / 5; }
 		// Modifier
 		void usePPUp(int amount);
 };

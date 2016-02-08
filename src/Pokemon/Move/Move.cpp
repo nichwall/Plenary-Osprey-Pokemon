@@ -51,9 +51,6 @@ BaseMove::BaseMove(int moveID, std::string moveIdentifier, int typeID, int pp, i
 BaseMove::~BaseMove() {
 	
 }
-void BaseMove::setMoveName(std::string moveName) {
-	name = moveName;
-}
 
 LearnedMove::LearnedMove() {
 	base = 0;
@@ -62,12 +59,6 @@ LearnedMove::LearnedMove() {
 LearnedMove::LearnedMove(BaseMove baseMove) {
 	base = &baseMove;
 	ppUsed = 0;
-}
-BaseMove* LearnedMove::move() {
-	return base;
-}
-int LearnedMove::getMovePP() {
-	return base->getMovePP() * (5+ppUsed) / 5;
 }
 void LearnedMove::usePPUp(int amount) {
 	ppUsed += amount;
@@ -174,7 +165,8 @@ int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 	
 	printf("Creating base moves....");
 	// Loop through all lines read from the file
-	for (unsigned int i=0; i<moveLines.size(); i++) {
+	for (size_t i=0; i<moveLines.size(); i++) {
+    	printf("\rCreating base moves....%u",i);
 		// Split line based on comma
 		std::vector<std::string> words;
 		boost::split(words, moveLines.at(i), boost::is_any_of(","));
@@ -208,7 +200,7 @@ int constructBaseMoves(std::string pathToMoves, std::string pathToNames) {
 			}
 		}
 	}
-	printf("done\n");
+	printf("\rCreating base moves....done\n");
 	
 	// Clean up vectors
 	moveLines.clear();
